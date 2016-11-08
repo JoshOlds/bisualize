@@ -3,18 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Bisualize</title>
+    <link rel = "stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/6.2.4/foundation-flex.min.css">
     <link rel="stylesheet" href="/public/bundle.css">
 </head>
 <body>
 
-    <h1>Bisualize Me Captain!</h1>
-    {{2+2}}
+    <h1>Bisualize</h1>
+<div class="top-bar">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text">Site Title</li>
+      <li>
+        <a href="#">One</a>
+        <ul class="menu vertical">
+          <li><a href="#">One</a></li>
+          <li><a href="#">Two</a></li>
+          <li><a href="#">Three</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Two</a></li>
+      <li><a href="#">Three</a></li>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="menu">
+      <li><input type="search" placeholder="Search"></li>
+      <li><button type="button" class="button">Search</button></li>
+    </ul>
+  </div>
+</div>
+
     <emp-view></emp-view>
     
 
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/6.2.4/foundation.js"></script>
+    
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
 
     <script src="/public/app.js"></script>
