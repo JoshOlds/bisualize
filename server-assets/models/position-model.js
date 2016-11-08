@@ -74,7 +74,7 @@ function updateEmployeeById(id, employeeId, cb){
 }
 
 // FOR TOMORROW:
-// Finish up all update and delete function for position... Then create other models, then do routes
+// Finish up all update and delete function for position. Update exports... Then create other models, then do routes
 
 
 module.exports = {
