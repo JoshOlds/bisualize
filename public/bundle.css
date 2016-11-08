@@ -1,5 +1,11 @@
 h1 {
-  color: green; }
+  color: #37474F; }
 
-.emp-badge {
-  border-radius: 50%; }
+.emp-details {
+  padding: 5vh; }
+
+.navigation {
+  background-color: #37474F; }
+
+.dropdown {
+  background-color: #37474F; }
