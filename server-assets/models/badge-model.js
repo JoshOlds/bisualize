@@ -10,18 +10,18 @@ let Badge = DS.defineResource({
 })
 
 function create(title, description, image, cb) {
-  // Use the Resource Model to create a new position
+  // Use the Resource Model to create a new Badge
   let badge = {id: uuid.v4(), title: title, description: description, image: image || '//placehold.it/50x50'}
   Badge.create(job).then(cb).catch(cb);
 }
 
 function getAll(query, cb) {
-  //Use the Resource Model to get all positions
+  //Use the Resource Model to get all Badgess
   Badge.findAll({}).then(cb).catch(cb)
 }
 
 function getById(id, query, cb) {
-  // use the Resource Model to get a single position by its id
+  // use the Resource Model to get a single Badge by its id
   Badge.find(id, formatQuery(query)).then(cb).catch(cb)
 }
 
@@ -43,10 +43,6 @@ function updateTitleById(id, title, cb){
 function updateImageById(id, url, cb){
     Badge.update(id, {image: url}).then(cb).catch(cb)
 }
-
-// FOR TOMORROW:
-// Finish up all update and delete function for position. Update exports... Then create other models, then do routes
-
 
 module.exports = {
   create,
