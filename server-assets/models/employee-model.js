@@ -33,15 +33,10 @@ let Employee = DS.defineResource({
 })
 
 
-<<<<<<< HEAD
 function create(body, cb) {
-  // Use the Resource Model to create a new position
-  let employee = {id: uuid.v4(), name: body.name, image: body.image || '//placehold.it/100x100', active: true}
-=======
-function create(name, image, cb) {
   // Use the Resource Model to create a new employee
-  let employee = {id: uuid.v4(), name: name, image: image || '//placehold.it/100x100', active: true}
->>>>>>> fd33b35cecdd460650657b84ac44c46c2ab86a50
+  let employee = {id: uuid.v4(), name: body.name, image: body.image || '//placehold.it/100x100', active: true}
+
   Employee.create(employee).then(cb).catch(cb);
 }
 
