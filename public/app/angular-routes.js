@@ -29,8 +29,7 @@ angular.module('bisualize')
                 template: '<read-view></read-view>'         
             })
 
-
-            $urlRouterProvider.otherwise('/mypage')
+            // $urlRouterProvider.otherwise('/mypage')
 
 
 

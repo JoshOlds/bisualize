@@ -10,19 +10,25 @@ let Job = DS.defineResource({
 })
 
 
+<<<<<<< HEAD
 function create(body, cb) {
   // Use the Resource Model to create a new position
   let job = {id: uuid.v4(), title: body.title, description: body.description}
+=======
+function create(title, description, cb) {
+  // Use the Resource Model to create a new job
+  let job = {id: uuid.v4(), title: title, description: description}
+>>>>>>> fd33b35cecdd460650657b84ac44c46c2ab86a50
   Job.create(job).then(cb).catch(cb);
 }
 
 function getAll(query, cb) {
-  //Use the Resource Model to get all positions
+  //Use the Resource Model to get all jobs
   Job.findAll({}).then(cb).catch(cb)
 }
 
 function getById(id, query, cb) {
-  // use the Resource Model to get a single position by its id
+  // use the Resource Model to get a single job by its id
   Job.find(id, formatQuery(query)).then(cb).catch(cb)
 }
 
@@ -40,9 +46,6 @@ function updateDescriptionById(id, description, cb){
 function updateTitleById(id, title, cb){
     Job.update(id, {title: title}).then(cb).catch(cb)
 }
-
-// FOR TOMORROW:
-// Finish up all update and delete function for position. Update exports... Then create other models, then do routes
 
 
 module.exports = {

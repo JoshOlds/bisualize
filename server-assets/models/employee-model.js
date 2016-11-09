@@ -26,26 +26,32 @@ let Employee = DS.defineResource({
     hasMany: {
         badge:{
             localField: "badges",
-            localKeys: "badgeIds"
+            localKeys: "badgeIds" //one way relationship
         }
     }
   }
 })
 
 
+<<<<<<< HEAD
 function create(body, cb) {
   // Use the Resource Model to create a new position
   let employee = {id: uuid.v4(), name: body.name, image: body.image || '//placehold.it/100x100', active: true}
+=======
+function create(name, image, cb) {
+  // Use the Resource Model to create a new employee
+  let employee = {id: uuid.v4(), name: name, image: image || '//placehold.it/100x100', active: true}
+>>>>>>> fd33b35cecdd460650657b84ac44c46c2ab86a50
   Employee.create(employee).then(cb).catch(cb);
 }
 
 function getAll(query, cb) {
-  //Use the Resource Model to get all positions
+  //Use the Resource Model to get all employees
   Employee.findAll({}).then(cb).catch(cb)
 }
 
 function getById(id, query, cb) {
-  // use the Resource Model to get a single position by its id
+  // use the Resource Model to get a single employee by their id
   Employee.find(id, formatQuery(query)).then(cb).catch(cb)
 }
 
@@ -99,9 +105,6 @@ function updateImageById(id, url, cb){
     .then(cb)
     .catch(cb)
 }
-
-// FOR TOMORROW:
-// Finish up all update and delete function for position. Update exports... Then create other models, then do routes
 
 
 module.exports = {
