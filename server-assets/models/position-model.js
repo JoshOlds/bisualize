@@ -23,14 +23,14 @@ let Position = DS.defineResource({
         }],
         position: { //Each Position has one manager
             localField: "manager",
-            localKey: 'positionId'
+            localKey: 'managerPositionId'
         }
     },
 
     hasMany: {
         position:{
             localField: "reports",
-            localKeys: "positionIds"
+            foreignKeys: "managerPositionIds"
         }
     }
   }
@@ -66,8 +66,8 @@ function updateJobById(id, jobId, cb){
 
 function updateEmployeeById(id, employeeId, cb){
     Promise.all([
-        Position.update(id, {employee: employeeId}),
-        DS.update('employee', employeeId, {position: id})
+        Position.update(id, {employeeId: employeeId}),
+        DS.update('employee', employeeId, {positionId: id})
     ])
     .then(cb)
     .catch(cb)  
@@ -81,6 +81,7 @@ module.exports = {
   create,
   getAll,
   getById,
-  deleteById
+  updateJobById,
+  updateEmployeeById
 }
 
