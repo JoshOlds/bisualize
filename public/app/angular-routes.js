@@ -12,9 +12,9 @@ angular.module('bisualize')
             })
 
             .state({
-                name: 'album',
-                url: '/album/:albumId',
-                template: '<album></album>'         
+                name: 'adminView',
+                url: '/admin',
+                template: '<admin-view></admin-view>'         
             })
 
 
