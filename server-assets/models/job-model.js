@@ -10,9 +10,9 @@ let Job = DS.defineResource({
 })
 
 
-function create(title, description, cb) {
+function create(body, cb) {
   // Use the Resource Model to create a new position
-  let job = {id: uuid.v4(), title: title, description: description}
+  let job = {id: uuid.v4(), title: body.title, description: body.description}
   Job.create(job).then(cb).catch(cb);
 }
 

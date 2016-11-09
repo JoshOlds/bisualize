@@ -9,10 +9,10 @@ let Badge = DS.defineResource({
   endpoint: 'badges'
 })
 
-function create(title, description, image, cb) {
+function create(body, cb) {
   // Use the Resource Model to create a new position
-  let badge = {id: uuid.v4(), title: title, description: description, image: image || '//placehold.it/50x50'}
-  Badge.create(job).then(cb).catch(cb);
+  let badge = {id: uuid.v4(), title: body.title, description: body.description, image: body.image || '//placehold.it/50x50'}
+  Badge.create(badge).then(cb).catch(cb);
 }
 
 function getAll(query, cb) {
