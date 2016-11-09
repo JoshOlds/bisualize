@@ -23,6 +23,12 @@ angular.module('bisualize')
                 template: '<org-view></org-view>'         
             })
 
+            .state({
+                name: 'readView',
+                url: '/readme',
+                template: '<read-view></read-view>'         
+            })
+
 
             $urlRouterProvider.otherwise('/mypage')
 
