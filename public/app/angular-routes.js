@@ -17,6 +17,12 @@ angular.module('bisualize')
                 template: '<admin-view></admin-view>'         
             })
 
+              .state({
+                name: 'orgView',
+                url: '/orgchart',
+                template: '<org-view></org-view>'         
+            })
+
 
             $urlRouterProvider.otherwise('/mypage')
 
