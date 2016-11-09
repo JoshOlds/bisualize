@@ -1,5 +1,9 @@
 (function(){
 
-    angular.module('bisualize', [])
+    angular.module('bisualize', [
+    'ui.router',
+    'ngSanitize'
+    
+    ])
 
 }())
