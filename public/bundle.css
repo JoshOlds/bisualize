@@ -6,3 +6,6 @@
 
 .tabs-title {
   display: inline-block; }
+
+.is-active {
+  background: #ECEFF1; }
