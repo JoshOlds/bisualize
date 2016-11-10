@@ -8,7 +8,9 @@
         controllerAs: 'avc'
     })
 
-    function AdminViewController(){
+    AdminViewController.$inject = ['AdminService']
+
+    function AdminViewController(AdminService){
 
         let avc = this;
 
@@ -38,6 +40,15 @@
         }]
 
 
+        avc.getEmployees = function(){
+            AdminService.getAllEmployees(function(res){
+                console.log(res)
+            })
+        }
+
+        avc.newEmployee = function(){
+
+        }
 
     }
 
