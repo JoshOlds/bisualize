@@ -1,28 +1,146 @@
-
- 
+<div class="row column medium-12 medium-centered admin-details">
+  <ul class="tabs text-center" data-tabs id="example-tabs">
+    <li class="tabs-title" ng-repeat="view in avc.views" ng-class="{'is-active': avc.activeView == view.name}"><a ng-click="avc.activeView = view.name">{{view.name}}</a></li>
+  </ul>
+</div>
 
 <div class="row column medium-12 medium-centered admin-details">
   <ul class="tabs text-center" data-tabs id="example-tabs">
-    <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Tab 1</a></li>
-    <li class="tabs-title"><a href="#panel2">Tab 2</a></li>
+    <li class="tabs-title" ng-class="{'is-active': avc.subActiveView == 'New'}"><a ng-click="avc.subActiveView = 'New'">New</a></li>
+    <li class="tabs-title" ng-class="{'is-active': avc.subActiveView == 'Edit'}"><a ng-click="avc.subActiveView = 'Edit'">Edit</a></li>
   </ul>
-  <div class="tabs-content" data-tabs-content="example-tabs">
-    <div class="tabs-panel is-active" id="panel1">
-      <p>Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus.</p>
-    </div>
-    <div class="tabs-panel" id="panel2">
-      <p>Suspendisse dictum feugiat nisl ut dapibus.  Vivamus hendrerit arcu sed erat molestie vehicula. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.  Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
-    </div>
-  </div>
 </div>
 
+<!--EMPLOYEES-->
+<form class="new-employee">
+  <div class="row" ng-show="avc.activeView == 'Employees' && avc.subActiveView == 'New'">
+    <div class="large-12 columns">
+      <label> Employee Name
+        <input type="text" placeholder="Name" ng-model="avc.name"/>
+      </label>
+      <label> Profile Picture URL
+        <input type="url" placeholder="Picture URL" ng-model="avc.image"/>
+      </label>
+      <button type="button" ng-click="#">Submit</button>
+    </div>
+  </div>
+</form>
+
+<form class="edit-employee">
+  <div class="row" ng-show="avc.activeView == 'Employees' && avc.subActiveView == 'Edit'">
+    <div class="large-12 columns">
+      <label> Employee Name
+        <input type="text" placeholder="Name" ng-model="avc.name"/>
+      </label>
+      <label> Profile Picture URL
+        <input type="url" placeholder="Picture URL" ng-model="avc.image"/>
+      </label>
+      <label> Job ID
+        <input type="text" placeholder="Job ID" ng-model="avc.jobId"/>
+      </label>
+      <label> Position ID
+        <input type="text" placeholder="Position ID" ng-model="avc.positionId"/>
+      </label>
+      <button type="button" ng-click="#">Submit</button>
+    </div>
+  </div>
+</form>
+
+<!--POSITIONS-->
+<form class="new-position">
+  <div class="row" ng-show="avc.activeView == 'Positions' && avc.subActiveView == 'New'">
+    <div class="large-12 columns">
+      <label> Manager Position ID
+        <input type="text" placeholder="Manager Position ID" ng-model="avc.managerPositionId"/>
+      </label>
+      <button type="button" ng-click="#">Submit</button>
+    </div>
+  </div>
+</form>
+
+<form class="edit-position">
+  <div class="row" ng-show="avc.activeView == 'Positions' && avc.subActiveView == 'Edit'">
+    <div class="large-12 columns">
+      <label> Position ID
+        <input type="text" placeholder="Position ID" ng-model="avc.positionId"/>
+      </label>
+      <label> Employee ID
+        <input type="text" placeholder="Employee ID" ng-model="avc.employeeId"/>
+      </label>
+      <label> Job ID
+        <input type="text" placeholder="Job ID" ng-model="avc.jobId"/>
+      </label>
+      <button type="button" ng-click="#">Submit</button>
+    </div>
+  </div>
+</form>
+
+<!--JOBS-->
+<form class="new-job" id="jobForm">
+  <div class="row" ng-show="avc.activeView == 'Jobs' && avc.subActiveView == 'New'">
+    <div class="large-12 columns">
+      <label> Job Title
+        <input type="text" placeholder="Job Title" ng-model="avc.title"/>
+      </label>
+      <label> Job Description
+        <textarea name="jobDescription" cols="30" rows="10" form="jobForm" ng-model="avc.description "></textarea>
+      </label>
+      <button type="button" ng-click="#">Submit</button>
+    </div>
+  </div>
+</form>
+
+<form class="edit-job" id="jobForm">
+  <div class="row" ng-show="avc.activeView == 'Jobs' && avc.subActiveView == 'Edit'">
+    <div class="large-12 columns">
+      <label> Job Title
+        <input type="text" placeholder="Job Title" ng-model="avc.title"/>
+      </label>
+      <label> Job Description
+        <textarea name="jobDescription" cols="30" rows="10" form="jobForm" ng-model="avc.description "></textarea>
+      </label>
+      <button type="button" ng-click="#">Submit</button>
+    </div>
+  </div>
+</form>
+
+<!--BADGES-->
+<form class="new-badge" id="badgeForm">
+  <div class="row" ng-show="avc.activeView == 'Badges' && avc.subActiveView == 'New'">
+    <div class="large-12 columns">
+      <label> Badge Title
+        <input type="text" placeholder="Badge Title" ng-model="avc.title"/>
+      </label>
+      <label> Badge Picture URL
+        <input type="url" placeholder="Picture URL" ng-model="avc.image"/>
+      </label>
+      <label> Badge Description
+        <textarea name="badgeDescription" cols="30" rows="10" form="badgeForm" ng-model="avc.description "></textarea>
+      </label>
+      <button type="button" ng-click="#">Submit</button>
+    </div>
+  </div>
+</form>
+
+<form class="edit-badge" id="badgeForm">
+  <div class="row" ng-show="avc.activeView == 'Badges' && avc.subActiveView == 'Edit'">
+    <div class="large-12 columns">
+      <label> Badge Title
+        <input type="text" placeholder="Badge Title" ng-model="avc.title"/>
+      </label>
+      <label> Badge Picture URL
+        <input type="url" placeholder="Picture URL" ng-model="avc.image"/>
+      </label>
+      <label> Badge Description
+        <textarea name="badgeDescription" cols="30" rows="10" form="badgeForm" ng-model="avc.description "></textarea>
+      </label>
+      <button type="button" ng-click="#">Submit</button>
+    </div>
+  </div>
+</form>
 
 
-
-
-
-
-
+<h1 ng-show="avc.activeView == 'banana'">BANANANANANANANANANANANANANANANANA Batman</h1>
 
 
 

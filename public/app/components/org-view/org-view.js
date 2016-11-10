@@ -4,7 +4,7 @@
 
     .component('orgView',{
         controller: OrgViewController,
-        templateUrl: '/public/app/components/org-view/org-view.html'
+        templateUrl: '/app/components/org-view/org-view.html'
     })
 
     function OrgViewController(){
