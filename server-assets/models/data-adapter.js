@@ -12,6 +12,9 @@ DS.registerAdapter('firebase', adapter, { default: true })
 
 function formatQuery(query){
   query = query || ''
+  if(typeof query != 'string'){
+    query = query.toString();
+  }
   return {
     with: query.split(',').join(' ').split(' ')
   }

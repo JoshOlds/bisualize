@@ -28,14 +28,26 @@ router.route('/:id?')
   })
 
   .put(function (req, res, next) {
-      let position = req.body;
-      if(position.employeeId){
-          Position.updateEmployeeById(position.id, position.employeeId)
-      }
-      if(position.jobId){
-          Position.updateJobById(position.id, position.jobId)
-      }
-      return 
+    let position = req.body;
+    let schemeArr = [];
+    if (!req.params.id) {
+      return res.send({ error: 'Please provide a position ID' });
+    }
+    let id = req.params.id;
+    schemeArr.push(schematron.existsIn.bind(null, id, 'position'))
+    if (position.employeeId) { schemeArr.push(schematron.existsIn.bind(null, position.employeeId, 'employee')) }
+    if (position.jobId) { schemeArr.push(schematron.existsIn.bind(null, position.jobId, 'job')) }
+
+    Promise.all(schemeArr)
+      .then(() => {
+        if (position.jobId) { Position.updateJobById(id, position.jobId) }
+        if (position.employeeId) { Position.updateEmployeeById(id, position.employeeId) }
+        res.send({ message: `Employee has been updated: ${id}` })
+      })
+
+      .catch(err => {
+        res.send({ error: err.toString() });
+      })
   })
 
   .delete(function (req, res, next) {

@@ -22,15 +22,16 @@ function getAll(query, cb) {
 }
 
 function getById(id, query, cb) {
+  query = query || '';
   // use the Resource Model to get a single Badge by its id
-  Badge.find(id, formatQuery(query)).then(cb).catch(cb)
+  Badge.find(id, formatQuery(query))
+  .then(cb)
+  .catch(cb)
 }
 
-// function deleteById(id, cb){
-
-//     Position.destroy(id).then(cb).catch(cb);
-//     //Cannot delete position while there are sub position attached
-// }
+function deleteById(id, cb){
+    Badge.destroy(id).then(cb).catch(cb);
+}
 
 
 function updateDescriptionById(id, description, cb){
@@ -51,6 +52,7 @@ module.exports = {
   getById,
   updateDescriptionById,
   updateTitleById,
-  updateImageById
+  updateImageById,
+  deleteById
 }
 

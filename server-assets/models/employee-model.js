@@ -45,9 +45,13 @@ function getAll(query, cb) {
   Employee.findAll({}).then(cb).catch(cb)
 }
 
-function getById(id, query, cb) {
+function getById(id, query) {
   // use the Resource Model to get a single employee by their id
-  Employee.find(id, formatQuery(query)).then(cb).catch(cb)
+  return new Promise(function(resolve, reject){
+      Employee.find(id, formatQuery(query))
+      .then(resolve)
+      .catch(reject)
+  })
 }
 
 // function deleteById(id, cb){
@@ -58,7 +62,7 @@ function getById(id, query, cb) {
 
 
 function updateJobById(id, jobId, cb){
-    Employee.update(id, {job: jobId}).then(cb).catch(cb)
+    Employee.update(id, {jobId: jobId}).then(cb).catch(cb)
 }
 
 function updatePositionById(id, positionId, cb){
@@ -79,6 +83,7 @@ function addBadgeById(id, badgeId, cb){
         .catch(cb)
     })
 }
+
 function deleteBadgeById(id, badgeId, cb){
     Employee.find(id).then(employee =>{
         if(!employee.badgeIds[badgeId]){cb(new Error('Employee does not have the badge: ' + badgeId))}

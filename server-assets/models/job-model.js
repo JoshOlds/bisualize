@@ -22,16 +22,18 @@ function getAll(query, cb) {
   Job.findAll({}).then(cb).catch(cb)
 }
 
-function getById(id, query, cb) {
+function getById(id, query) {
   // use the Resource Model to get a single job by its id
-  Job.find(id, formatQuery(query)).then(cb).catch(cb)
+  return new Promise(function(resolve, reject){
+      Job.find(id, formatQuery(query))
+      .then(resolve)
+      .catch(reject)
+  })
 }
 
-// function deleteById(id, cb){
-
-//     Position.destroy(id).then(cb).catch(cb);
-//     //Cannot delete position while there are sub position attached
-// }
+function deleteById(id, cb){
+    Job.destroy(id).then(cb).catch(cb);
+}
 
 
 function updateDescriptionById(id, description, cb){
@@ -48,6 +50,7 @@ module.exports = {
   getAll,
   getById,
   updateDescriptionById,
-  updateTitleById
+  updateTitleById,
+  deleteById
 }
 
