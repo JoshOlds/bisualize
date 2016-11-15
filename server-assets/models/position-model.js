@@ -18,7 +18,7 @@ let Position = DS.defineResource({
                 localField: 'employee',
                 foreignKey: 'positionId' //Employee will point back to the position
             }, {
-                localField: 'employeeId',
+                localField: 'employee',
                 localKey: 'employeeId' //Position points to specific employee
             }],
             position: { //Each Position has one manager
@@ -80,22 +80,33 @@ function getById(id, query, cb) {
 
 
 function updateJobById(id, jobId, cb) {
-    if(jobId == -1){
-        Position.update(id, {job: ''}).then(cb).catch(cb)
+    if (jobId == -1) {
+        Position.update(id, { jobId: '' }).then(cb).catch(cb)
         return;
     }
-    Position.update(id, { job: jobId }).then(cb).catch(cb)
+    Position.update(id, { jobId: jobId }).then(cb).catch(cb)
 }
 
 function updateEmployeeById(id, employeeId, cb) {
     if (employeeId == -1) {
-        Promise.all([
-            Position.update(id, { employeeId: '' }),
-            DS.update('employee', employeeId, { positionId: '' })
-        ])
-            .then(cb)
-            .catch(cb)
-            return;
+        Position.find(id).then(position => {
+            tempId = position.employeeId;
+            if (tempId == "" || tempId == -1) {
+                Position.update(id, { employeeId: '-1' })
+                    .then(cb)
+                    .catch(cb)
+            }
+            else {
+                Promise.all([
+                    Position.update(id, { employeeId: '-1' }),
+                    DS.update('employee', tempId, { positionId: '-1' })
+                ])
+                    .then(cb)
+                    .catch(cb)
+            }
+
+        })
+        return;
     }
     Promise.all([
         Position.update(id, { employeeId: employeeId }),

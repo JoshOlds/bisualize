@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Position = require('../models/position-model');
+const schematron = require('../models/schematron');
 
 module.exports.mountPath = '/positions'
 module.exports.router = router;
@@ -34,15 +35,15 @@ router.route('/:id?')
       return res.send({ error: 'Please provide a position ID' });
     }
     let id = req.params.id;
-    schemeArr.push(schematron.existsIn.bind(null, id, 'position'))
-    if (position.employeeId) { schemeArr.push(schematron.existsIn.bind(null, position.employeeId, 'employee')) }
-    if (position.jobId) { schemeArr.push(schematron.existsIn.bind(null, position.jobId, 'job')) }
+    schemeArr.push(schematron.existsIn(id, 'position'))
+    if (position.employeeId && position.jobId != -1) { schemeArr.push(schematron.existsIn(position.employeeId, 'employee')) }
+    if (position.jobId && position.jobId != -1) { schemeArr.push(schematron.existsIn(position.jobId, 'job')) }
 
     Promise.all(schemeArr)
       .then(() => {
         if (position.jobId) { Position.updateJobById(id, position.jobId) }
         if (position.employeeId) { Position.updateEmployeeById(id, position.employeeId) }
-        res.send({ message: `Employee has been updated: ${id}` })
+        res.send({ message: `Position has been updated: ${id}` })
       })
 
       .catch(err => {
