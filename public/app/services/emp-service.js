@@ -8,7 +8,7 @@
          
              ems.getAllEmployees = function(){
                  debugger
-                 myService.getAllPositions()
+                 empService.getAllPositions()
                     .then(data =>{console.log(data)})
                     .catch(error =>{console.log(error)})
                  
