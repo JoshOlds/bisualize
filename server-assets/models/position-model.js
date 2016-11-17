@@ -17,9 +17,6 @@ let Position = DS.defineResource({
             employee: [{ //Each Position has one employee
                 localField: 'employee',
                 foreignKey: 'positionId' //Employee will point back to the position
-            }, {
-                localField: 'employeeX',
-                localKey: 'employeeId' //Position points to specific employee
             }],
             position: { //Each Position has one manager
                 localField: "manager",
@@ -52,7 +49,7 @@ function create(body, cb) {
         Position.find(body.managerPositionId).then(position => {
             position.reportIds = position.reportIds || {};
             position.reportIds[id] = id;
-            let newPosition = { id: id, managerPositionId: body.managerPositionId, reportIds: {} }
+            let newPosition = { id: id, managerPositionId: body.managerPositionId, jobId: '-1', employeeId: '-1', reportIds: {} }
             Promise.all([
                 Position.update(position.id, position),
                 Position.create(newPosition)
@@ -74,7 +71,7 @@ function getById(id, query, cb) {
 
 function deleteById(id, cb){
     Position.find(id).then(position =>{
-        if(position.employeeId){ return cb({error: 'Cannot delete a position with employee! Please remove employee first.'})}
+        if(position.employeeId != '-1'){ return cb({error: 'Cannot delete a position with employee! Please remove employee first.'})}
         if(!position.reportIds){
             return Position.destroy(id).then(cb({message: `Position has been deleted: ${id}`})).catch(cb);
         }

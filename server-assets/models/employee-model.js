@@ -17,9 +17,6 @@ let Employee = DS.defineResource({
         position: [{ //Each employee has one position
             localField: 'position',
             foreignKey: 'employeeId' //Employee will point back to the position
-        },{
-            localField: 'positionX',
-            localKey: 'positionId' //Position points to specific employee
         }]
     },
 
