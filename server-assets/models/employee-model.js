@@ -18,7 +18,7 @@ let Employee = DS.defineResource({
             localField: 'position',
             foreignKey: 'employeeId' //Employee will point back to the position
         },{
-            localField: 'position',
+            localField: 'positionX',
             localKey: 'positionId' //Position points to specific employee
         }]
     },
@@ -35,7 +35,7 @@ let Employee = DS.defineResource({
 
 function create(body, cb) {
   // Use the Resource Model to create a new employee
-  let employee = {id: uuid.v4(), name: body.name, image: body.image || '//placehold.it/100x100', active: true}
+  let employee = {id: uuid.v4(), name: body.name, image: body.image || '//placehold.it/100x100', active: true, jobId : '-1', positionId: '-1'}
 
   Employee.create(employee).then(cb).catch(cb);
 }

@@ -18,7 +18,7 @@ let Position = DS.defineResource({
                 localField: 'employee',
                 foreignKey: 'positionId' //Employee will point back to the position
             }, {
-                localField: 'employee',
+                localField: 'employeeX',
                 localKey: 'employeeId' //Position points to specific employee
             }],
             position: { //Each Position has one manager
@@ -45,7 +45,7 @@ function create(body, cb) {
     }
     if (body.managerPositionId == -1) { //Only for master positions
         managerPositionId = body.managerPositionId;
-        let position = { id: uuid.v4(), managerPositionId: body.managerPositionId, reportIds: {} }
+        let position = { id: uuid.v4(), managerPositionId: body.managerPositionId, reportIds: {}, jobId: '-1', employeeId: '-1' }
         Position.create(position).then(cb).catch(cb);
     } else {
         let id = uuid.v4();
@@ -72,11 +72,22 @@ function getById(id, query, cb) {
     Position.find(id, formatQuery(query)).then(cb).catch(cb)
 }
 
-// function deleteById(id, cb){
-
-//     Position.destroy(id).then(cb).catch(cb);
-//     //Cannot delete position while there are sub position attached
-// }
+function deleteById(id, cb){
+    Position.find(id).then(position =>{
+        if(position.employeeId){ return cb({error: 'Cannot delete a position with employee! Please remove employee first.'})}
+        if(!position.reportIds){
+            return Position.destroy(id).then(cb({message: `Position has been deleted: ${id}`})).catch(cb);
+        }
+        if(Object.keys(position.reportIds).length == 0){
+            return Position.destroy(id).then(cb({message: `Position has been deleted: ${id}`})).catch(cb);
+        }
+        else{
+           return cb({error: 'Cannot delete position with reports! Please remove reports first.'})
+        }
+    })
+    .catch(cb)  
+    //Cannot delete position while there are sub position attached
+}
 
 
 function updateJobById(id, jobId, cb) {
@@ -124,6 +135,7 @@ module.exports = {
     create,
     getAll,
     getById,
+    deleteById,
     updateJobById,
     updateEmployeeById
 }

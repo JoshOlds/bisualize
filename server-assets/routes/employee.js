@@ -37,9 +37,9 @@ router.route('/:id?')
     }
     let id = req.params.id;
     schemeArr.push(schematron.existsIn(id, 'employee'))
-    if (employee.positionId) { schemeArr.push(schematron.existsIn(employee.positionId, 'position')) }
-    if (employee.jobId) { schemeArr.push(schematron.existsIn(employee.jobId, 'job')) }
-    if (employee.badgeId) { schemeArr.push(schematron.existsIn(employee.badgeId, 'badge')) }
+    if (employee.positionId && employee.positionId != -1) { schemeArr.push(schematron.existsIn(employee.positionId, 'position')) }
+    if (employee.jobId && employee.jobId != -1) { schemeArr.push(schematron.existsIn(employee.jobId, 'job')) }
+    if (employee.badgeId && employee.badgeId != -1) { schemeArr.push(schematron.existsIn(employee.badgeId, 'badge')) }
 
     Promise.all(schemeArr)
       .then(() => {

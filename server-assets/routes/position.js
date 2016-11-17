@@ -10,12 +10,12 @@ router.route('/:id?')
   .get(function (req, res, next) {
     if (req.params.id) {
       Position.getById(req.params.id, req.query.include, function (position) {
-        if(position.stack) { return next(position) }
+        if (position.stack) { return next(position) }
         return res.send(position)
       })
     } else {
       Position.getAll(req.query.include, function (positions) {
-        if(positions.stack) { return next(positions) }
+        if (positions.stack) { return next(positions) }
         return res.send(positions);
       });
     }
@@ -23,7 +23,7 @@ router.route('/:id?')
 
   .post(function (req, res, next) {
     Position.create(req.body, function (position) {
-      if(position.stack) { return next(position) }
+      if (position.stack) { return next(position) }
       return res.send(position)
     })
   })
@@ -36,7 +36,7 @@ router.route('/:id?')
     }
     let id = req.params.id;
     schemeArr.push(schematron.existsIn(id, 'position'))
-    if (position.employeeId && position.jobId != -1) { schemeArr.push(schematron.existsIn(position.employeeId, 'employee')) }
+    if (position.employeeId && position.employeeId != -1) { schemeArr.push(schematron.existsIn(position.employeeId, 'employee')) }
     if (position.jobId && position.jobId != -1) { schemeArr.push(schematron.existsIn(position.jobId, 'job')) }
 
     Promise.all(schemeArr)
@@ -52,8 +52,14 @@ router.route('/:id?')
   })
 
   .delete(function (req, res, next) {
-    Position.deleteById(req.params.id, function(response){
-      if(response.stack){return next(response)}
-      return res.send(response)
+    let id = req.params.id;
+    schematron.existsIn(id, 'position').then(message => {
+      Position.deleteById(req.params.id, function (response) {
+        if (response.stack) { return next(response) }
+        return res.send(response)
+      })
     })
+      .catch(err => {
+        res.send({ error: err.toString() })
+      })
   })
