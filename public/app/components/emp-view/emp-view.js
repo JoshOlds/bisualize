@@ -4,23 +4,25 @@
 
     .component('empView',{
         controller: EmpViewController,
-        templateUrl: '/app/components/emp-view/emp-view.html'
+        templateUrl: '/app/components/emp-view/emp-view.html',
+        controllerAs: 'evc'
     })
 
-    EmpViewController.$inject = ['EmpService']
+    EmpViewController.$inject = ['BisualizeService']
 
-    function EmpViewController(EmpService){
+    function EmpViewController(BisualizeService){
         let evc = this
 
         evc.getAllEmployees = function(){
             debugger
-            EmpService.getAllEmployees(function(res){
-                console.log(res)
+            BisualizeService.getEmployee('2878a62f-3a7c-4c0b-a4fc-6d6edd968b93')
+            .then(data =>{
+                console.log(data)
+            })
+            .catch(err =>{
+                console.log(err)
             })
         }
-
-
-
         
 
     }
