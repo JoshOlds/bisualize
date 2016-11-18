@@ -18,21 +18,21 @@
                 <h3>{{evc.employee.job.description}}</h3>
             </div>
         </div>
-        <div class="row">
-            <div class="small-12 columns">
+        <!--<div class="row">
+            <div class="small-12 columns" ng-if="{{evc.employee.position.managerPositionId !== -1}}">-->
                 <!--managerPosId-->
                 <!--managerName-->
-                <h3>Walt Disney</h3>
+                <!--<h3>{{evc.employee.position.manager}}</h3>
             </div>
-        </div>
+        </div>-->
 
-   <div class="row">
-            <div class="small-12 columns">
+   <!--<div class="row">
+            <div class="small-12 columns">-->
                 <!--Quote-->
                 <!--Quote-->
-                <h3>"It's kind of fun to do the impossible"</h3>
+                <!--<h3>"It's kind of fun to do the impossible"</h3>
             </div>
-        </div>
+        </div>-->
 
            <div class="row">
             <div class="small-12 columns">
@@ -44,18 +44,11 @@
 
     </div>
 </div>
-<div class="row">
+<div class="row collapse">
     <!--employeeId-->
         <h4>Badges</h4>
     <div class="small-1 columns badges" ng-repeat="badge in evc.employee.badges">
         <img src="{{badge.image}}" class="badge">
-        <img src="/public/badges/badges/8.png" class="badge">
-        <!--<img src="http://placehold.it/50x50" class="badge">
-        <img src="http://placehold.it/50x50" class="badge">
-        <img src="http://placehold.it/50x50" class="badge">
-        <img src="http://placehold.it/50x50" class="badge">
-        <img src="http://placehold.it/50x50" class="badge">
-        <img src="http://placehold.it/50x50" class="badge">-->
     </div>
 </div>
 <div class="row">
