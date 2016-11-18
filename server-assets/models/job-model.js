@@ -12,7 +12,7 @@ let Job = DS.defineResource({
 
 function create(body, cb) {
   // Use the Resource Model to create a new job
-  let job = {id: uuid.v4(), title: body.title, description: body.description}
+  let job = {id: uuid.v4(), title: body.title, description: body.description, active: true}
 
   Job.create(job).then(cb).catch(cb);
 }
@@ -32,7 +32,7 @@ function getById(id, query) {
 }
 
 function deleteById(id, cb){
-    Job.destroy(id).then(cb).catch(cb);
+  Job.update(id, {active: false}).then(cb).catch(cb)
 }
 
 
