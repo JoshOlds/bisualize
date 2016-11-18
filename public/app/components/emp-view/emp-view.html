@@ -1,20 +1,21 @@
 <div class="row emp-details">
     <div class="small-5 columns emp-photo">
-        <img src="http://img.lum.dolimg.com/v1/images/open-uri20150422-20810-e6k8tr_d1dd2596.png" alt="" height="300" width="300">
+        <img src="{{evc.employee.image}}" alt="" height="300" width="300">
     </div>
     <div class="small-7 columns">
         <div class="row">
             <div class="small-12 columns">
                 <!--employeeId-->
                  <!--employeeName-->
-                <h1>Mickey Mouse</h1>
+                <h1>{{evc.employee.name}}</h1>
             </div>
         </div>
         <div class="row">
             <div class="small-12 columns">
                 <!--jobID-->
                 <!--jobTitle-->
-                <h2>CEO</h2>
+                <h2>{{evc.employee.job.title}}</h2>
+                <h3>{{evc.employee.job.description}}</h3>
             </div>
         </div>
         <div class="row">
@@ -45,16 +46,16 @@
 </div>
 <div class="row">
     <!--employeeId-->
-    <div class="small-12 columns badges">
         <h4>Badges</h4>
+    <div class="small-1 columns badges" ng-repeat="badge in evc.employee.badges">
+        <img src="{{badge.image}}" class="badge">
+        <img src="/public/badges/badges/8.png" class="badge">
+        <!--<img src="http://placehold.it/50x50" class="badge">
         <img src="http://placehold.it/50x50" class="badge">
         <img src="http://placehold.it/50x50" class="badge">
         <img src="http://placehold.it/50x50" class="badge">
         <img src="http://placehold.it/50x50" class="badge">
-        <img src="http://placehold.it/50x50" class="badge">
-        <img src="http://placehold.it/50x50" class="badge">
-        <img src="http://placehold.it/50x50" class="badge">
-        <img src="http://placehold.it/50x50" class="badge">
+        <img src="http://placehold.it/50x50" class="badge">-->
     </div>
 </div>
 <div class="row">
