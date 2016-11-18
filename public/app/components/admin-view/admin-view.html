@@ -129,21 +129,21 @@
   </div>
 </form>
 
-<form class="edit-badge" id="badgeForm">
-  <div class="row" ng-show="avc.activeView == 'Badges' && avc.subActiveView == 'Edit'">
-    <div class="large-12 columns">
-      <label> Badge Title
-        <input type="text" placeholder="Badge Title" ng-model="avc.title"/>
-      </label>
-      <label> Badge Picture URL
-        <input type="url" placeholder="Picture URL" ng-model="avc.image"/>
-      </label>
-      <label> Badge Description
-        <textarea name="badgeDescription" cols="30" rows="10" form="badgeForm" ng-model="avc.description"></textarea>
-      </label>
-      <button type="button" class="button" ng-click="">Submit</button>
-    </div>
+<div class="row" ng-show="avc.activeView == 'Badges' && avc.subActiveView == 'Edit'">
+  <div class="large-12 columns">
+    <form class="edit-badge" id="badgeForm">
+      <label for="current-badge"> Badge Title</label>
+      <select id="current-badge" ng-model="avc.currentBadge" ng-options="badge as badge.title for badge in avc.badges"></select>
+    </form>
+    <form ng-if="avc.currentBadge">
+      <input type="text" placeholder="Badge Title" ng-model="avc.currentBadge.title" />
+      <label>Badge Picture URL</label>
+      <input type="text" placeholder="Picture URL" ng-model="avc.currentBadge.image" />
+      <label> Badge Description</label>
+      <textarea name="badgeDescription" cols="30" rows="10" form="badgeForm" ng-model="avc.currentBadge.description"></textarea>
+      <button type="button" class="button" ng-click="avc.BisualizeService.updateBadge(avc.currentBadge.id, avc.currentBadge)">Submit</button>
   </div>
+</div>
 </form>
 
 

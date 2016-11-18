@@ -15,14 +15,15 @@
         let avc = this;
         avc.BisualizeService = BisualizeService;
 
-        let positions = []
-        let employees = []
-        let jobs = []
-        let badges = []
-        avc.BisualizeService.getAllPositions().then(data => { positions = data })
-        avc.BisualizeService.getAllEmployees().then(data => { employees = data })
-        avc.BisualizeService.getAllJobs().then(data => { jobs = data })
-        avc.BisualizeService.getAllBadges().then(data => { badges = data })
+        avc.positions = []
+        avc.employees = []
+        avc.jobs = []
+        avc.badges = []
+        // avc.currentBadge = {}
+        avc.BisualizeService.getAllPositions().then(data => { avc.positions = data })
+        avc.BisualizeService.getAllEmployees().then(data => { avc.employees = data })
+        avc.BisualizeService.getAllJobs().then(data => { avc.jobs = data })
+        avc.BisualizeService.getAllBadges().then(data => { avc.badges = data })
 
         avc.activeView = 'Employees'
         avc.subActiveView = 'New'

@@ -335,7 +335,7 @@ angular.module('bisualize')
             })
         }
 
-        this.updateBadge = function updateBadge(id, updageData) {//Requires a badge object. Update only looks for 'title','description', and 'image' keys
+        this.updateBadge = function updateBadge(id, updateData) {//Requires a badge object. Update only looks for 'title','description', and 'image' keys
             return new Promise((resolve, reject) => {
                 $.ajax({
                     url: baseUrl + badgeUrl + id,
