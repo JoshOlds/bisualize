@@ -44,10 +44,15 @@
 
     </div>
 </div>
-<div class="row collapse">
-    <!--employeeId-->
+<!--<div class="row">
+<div class="columns small-12">
         <h4>Badges</h4>
-    <div class="small-1 columns badges" ng-repeat="badge in evc.employee.badges">
+
+</div>
+</div>-->
+    <!--employeeId-->
+<div class="row small-collapse medium-collapse large-collapse">
+    <div class="small-1 columns badges badges-padding" ng-repeat="badge in evc.employee.badges">
         <img src="{{badge.image}}" class="badge">
     </div>
 </div>
