@@ -215,10 +215,11 @@ angular.module('bisualize')
             })
         }
 
-        this.addEmployee = function addEmployee(name) { //Creates a new employee. Requires a name
+        this.addEmployee = function addEmployee(name, image) { //Creates a new employee. Requires a name
             return new Promise((resolve, reject) => {
                 if (!name) { return reject({ error: 'Cannot add Employee, Must supply a name!' }) }
                 var postData = { name: name }
+                if(image){postData.image = image}
                 $.post(baseUrl + employeeUrl, postData)
                     .then(data => {
                         return resolve(data)

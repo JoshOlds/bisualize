@@ -116,10 +116,14 @@ function updateEmployeeById(id, employeeId, cb) {
         })
         return;
     }
-    Promise.all([
-        Position.update(id, { employeeId: employeeId }),
-        DS.update('employee', employeeId, { positionId: id })
-    ])
+    Position.find(id).then(origPosition =>{
+        let promiseArr = [
+            Position.update(id, { employeeId: employeeId }),
+            DS.update('employee', employeeId, { positionId: id })
+        ]
+        if(origPosition.employeeId != '-1'){promiseArr.push(DS.update('employee', origPosition.employeeId, {employeeId: '-1'}))}
+    })
+    Promise.all([promiseArr])
         .then(cb)
         .catch(cb)
 }

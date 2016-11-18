@@ -1,18 +1,28 @@
-;(function (){
+; (function () {
 
     angular.module('bisualize')
 
-    .component('adminView',{
-        controller: AdminViewController,
-        templateUrl: '/app/components/admin-view/admin-view.html',
-        controllerAs: 'avc'
-    })
+        .component('adminView', {
+            controller: AdminViewController,
+            templateUrl: '/app/components/admin-view/admin-view.html',
+            controllerAs: 'avc'
+        })
 
-    AdminViewController.$inject = ['AdminService']
+    AdminViewController.$inject = ['BisualizeService']
 
-    function AdminViewController(AdminService){
+    function AdminViewController(BisualizeService) {
 
         let avc = this;
+        avc.BisualizeService = BisualizeService;
+
+        let positions = []
+        let employees = []
+        let jobs = []
+        let badges = []
+        avc.BisualizeService.getAllPositions().then(data => { positions = data })
+        avc.BisualizeService.getAllEmployees().then(data => { employees = data })
+        avc.BisualizeService.getAllJobs().then(data => { jobs = data })
+        avc.BisualizeService.getAllBadges().then(data => { badges = data })
 
         avc.activeView = 'Employees'
         avc.subActiveView = 'New'
@@ -29,7 +39,7 @@
 
         avc.views = [{
             name: 'Employees',
-        },{
+        }, {
             name: 'Positions'
         },
         {
@@ -39,21 +49,10 @@
             name: 'Badges'
         }]
 
-
-        avc.getEmployees = function(){
-            AdminService.getAllEmployees(function(res){
-                console.log(res)
-            })
-        }
-
-        avc.newEmployee = function(){
-
-        }
-
     }
 
 
 
-    
 
-}())
+
+} ())

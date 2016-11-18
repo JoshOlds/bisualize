@@ -63,12 +63,16 @@ function updateJobById(id, jobId, cb){
 }
 
 function updatePositionById(id, positionId, cb){
-    Promise.all([
-        Employee.update(id, {positionId: positionId}),
-        DS.update('position', positionId, {employeeId: id})
-    ])
-    .then(cb)
-    .catch(cb)  
+    Employee.find(id).then(origEmployee =>{
+        promiseArr = [
+            Employee.update(id, {positionId: positionId}),
+            DS.update('position', positionId, {employeeId: id})
+        ]
+        if(origEmployee.positionId != '-1'){promiseArr.push(DS.update('position', origEmployee.positionId, {employeeId: '-1'} ))}
+        Promise.all([promiseArr])
+        .then(cb)
+        .catch(cb)
+    })    
 }
 
 function addBadgeById(id, badgeId, cb){
