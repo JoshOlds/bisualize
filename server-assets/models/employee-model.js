@@ -63,6 +63,7 @@ function updateJobById(id, jobId, cb){
 }
 
 function updateNameById(id, name, cb){
+    if(!name){return cb({error: 'Must provide a name! Cannot be blank!'})}
     Employee.update(id, {name: name}).then(cb).catch(cb)
 }
 
@@ -72,7 +73,7 @@ function updatePositionById(id, positionId, cb){
             Employee.update(id, {positionId: positionId}),
             DS.update('position', positionId, {employeeId: id})
         ]
-        if(origEmployee.positionId != '-1'){promiseArr.push(DS.update('position', origEmployee.positionId, {employeeId: '-1'} ))}
+        if(origEmployee.positionId != '-1' && origEmployee.positionId != positionId){promiseArr.push(DS.update('position', origEmployee.positionId, {employeeId: '-1'} ))}
         Promise.all([promiseArr])
         .then(cb)
         .catch(cb)
@@ -106,6 +107,7 @@ function terminateById(id, cb){
 }
 
 function updateImageById(id, url, cb){
+    if(!url){return cb({error: 'Must provide a url! Cannot be blank'})}
     Employee.update(id, {image: url})
     .then(cb)
     .catch(cb)
