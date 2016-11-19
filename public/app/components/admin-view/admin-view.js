@@ -20,10 +20,10 @@
         avc.jobs = []
         avc.badges = []
 
-        avc.BisualizeService.getAllPositions().then(data => { isActive(data, 'positions') })
+        avc.BisualizeService.getAllPositions().then(data => { avc.positions = data  })
         avc.BisualizeService.getAllEmployees().then(data => { isActive(data, 'employees') })
         avc.BisualizeService.getAllJobs().then(data => { isActive(data, 'jobs') })
-        avc.BisualizeService.getAllBadges().then(data => { isActive(data, 'badges') })
+        avc.BisualizeService.getAllBadges().then(data => { avc.badges = data  })
 
         avc.activeView = 'Employees'
         avc.subActiveView = 'New'
@@ -57,13 +57,27 @@
         }
         //Renews active data after "new" things are added to each array
         avc.renewData = function () {
-            avc.BisualizeService.getAllPositions().then(data => { isActive(data, 'positions') })
+            avc.BisualizeService.getAllPositions().then(data => { avc.positions = data  })
             avc.BisualizeService.getAllEmployees().then(data => { isActive(data, 'employees') })
             avc.BisualizeService.getAllJobs().then(data => { isActive(data, 'jobs') })
-            avc.BisualizeService.getAllBadges().then(data => { isActive(data, 'badges') })
+            avc.BisualizeService.getAllBadges().then(data => { avc.badges = data  })
         }
 
         avc.updateJob = function (id, currentJob) {
+            if (currentJob.terminate) {
+                avc.BisualizeService.deleteJob(id)
+                    .then(function (data) {
+                        if (data.message) {
+                            avc.feedbackSuccess = true
+                            avc.feedback = data.message
+                            avc.showFeedback()
+                        } else {
+                            avc.feedbackFail = true
+                            avc.feedback = data.error
+                            avc.showFeedback()
+                        }
+                    })
+            }
             avc.BisualizeService.updateJob(id, currentJob)
                 .then(function (data) {
                     if (data.message) {
@@ -99,6 +113,21 @@
         }
 
         avc.updateBadge = function (id, currentBadge) {
+            if (currentBadge.terminate) {
+                avc.BisualizeService.deleteBadge(id)
+                    .then(function (data) {
+                        if (data.message) {
+                            avc.feedbackSuccess = true
+                            avc.feedback = data.message
+                            avc.showFeedback()
+                        } else {
+                            avc.feedbackFail = true
+                            avc.feedback = data.error
+                            avc.showFeedback()
+                        }
+                    })
+                    return
+            }
             avc.BisualizeService.updateBadge(id, currentBadge)
                 .then(function (data) {
                     if (data.message) {
@@ -116,7 +145,6 @@
         avc.addBadge = function (title, description, image) {
             avc.BisualizeService.addBadge(title, description, image)
                 .then(function (data) {
-                    debugger
                     if (data.message) {
                         avc.feedbackSuccess = true
                         avc.feedback = data.message
@@ -183,10 +211,24 @@
                 })
         }
 
-        avc.updatePosition = function updatePosition(id, updateData) {
-            avc.BisualizeService.updatePosition(id, updateData)
+        avc.updatePosition = function updatePosition(id, currentPosition) {
+            if (currentPosition.terminate) {
+                avc.BisualizeService.deletePosition(id)
+                    .then(function (data) {
+                        if (data.message) {
+                            avc.feedbackSuccess = true
+                            avc.feedback = data.message
+                            avc.showFeedback()
+                        } else {
+                            avc.feedbackFail = true
+                            avc.feedback = data.error
+                            avc.showFeedback()
+                        }
+                    })
+                    return
+            }
+            avc.BisualizeService.updatePosition(id, currentPosition)
                 .then(function (data) {
-                    debugger
                     if (data.message) {
                         avc.feedbackSuccess = true
                         avc.feedback = data.message
