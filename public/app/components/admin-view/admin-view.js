@@ -27,6 +27,15 @@
 
         avc.activeView = 'Employees'
         avc.subActiveView = 'New'
+        avc.views = [{
+            name: 'Employees',
+            },{
+            name: 'Positions'
+            },{
+            name: 'Jobs'
+            },{
+            name: 'Badges'
+            }]
 
         avc.name = ''
         avc.image = ''
@@ -37,19 +46,21 @@
         avc.description = ''
         avc.managerPositionId = ''
 
+        //Shows results of Posts and Puts to Server
         avc.feedbackSuccess = false
         avc.feedbackFail = false
         avc.feedback
 
+        //Updates screen right away Required due to Angular Update frequency 
         function update() {
             $scope.$evalAsync()
         }
-
+        //Renews active data after "new" things are added to each array
         avc.renewData = function(){
-            avc.BisualizeService.getAllPositions().then(data => { avc.positions = data })
-            avc.BisualizeService.getAllEmployees().then(data => { avc.employees = data })
-            avc.BisualizeService.getAllJobs().then(data => { avc.jobs = data })
-            avc.BisualizeService.getAllBadges().then(data => { avc.badges = data })
+            avc.BisualizeService.getAllJobs().then(data => { avc.jobs = data; update()})
+            avc.BisualizeService.getAllEmployees().then(data => { avc.employees = data; update() })
+            avc.BisualizeService.getAllJobs().then(data => { avc.jobs = data; update() })
+            avc.BisualizeService.getAllBadges().then(data => { avc.badges = data; update() })
         }
 
         avc.updateJob = function (id, currentJob) {
@@ -103,7 +114,7 @@
                 })
         }
 
-
+        //Shows feedback message for 5 seconds
         avc.showFeedback = function () {            
             update();
             setTimeout(function () {
@@ -113,17 +124,7 @@
             }, 5000)
         }
 
-        avc.views = [{
-            name: 'Employees',
-        }, {
-            name: 'Positions'
-        },
-        {
-            name: 'Jobs'
-        },
-        {
-            name: 'Badges'
-        }]
+
 
     }
 

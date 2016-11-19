@@ -28,7 +28,7 @@
       <label> Profile Picture URL
         <input type="url" placeholder="Picture URL" ng-model="avc.image"/>
       </label>
-      <button type="button" class="button" ng-click="avc.BisualizeService.addEmployee(avc.name, avc.image)">Submit</button>
+      <button type="button" class="button" ng-click="avc.BisualizeService.addEmployee(avc.name, avc.image); avc.renewData()">Submit</button>
     </div>
   </div>
 </form>
@@ -64,7 +64,7 @@
       <label> Manager Position ID
         <input type="text" placeholder="Manager Position ID" ng-model="avc.managerPositionId"/>
       </label>
-      <button type="button" class="button" ng-click="avc.BisualizeService.addPosition(avc.managerPositionId)">Submit</button>
+      <button type="button" class="button" ng-click="avc.BisualizeService.addPosition(avc.managerPositionId); avc.renewData()">Submit</button>
     </div>
   </div>
 </form>
@@ -96,7 +96,7 @@
       <label> Job Description
         <textarea name="jobDescription" cols="30" rows="10" form="jobForm" ng-model="avc.description"></textarea>
       </label>
-      <button type="button" class="button" ng-click="avc.BisualizeService.addJob(avc.title, avc.description)">Submit</button>
+      <button type="button" class="button" ng-click="avc.BisualizeService.addJob(avc.title, avc.description); avc.renewData()">Submit</button>
     </div>
   </div>
 </form>
@@ -133,7 +133,7 @@
       <label> Badge Description
         <textarea name="badgeDescription" cols="30" rows="10" form="badgeForm" ng-model="avc.description"></textarea>
       </label>
-      <button type="button" class="button" ng-click="avc.BisualizeService.addBadge(avc.title, avc.description, avc.image)">Submit</button>
+      <button type="button" class="button" ng-click="avc.BisualizeService.addBadge(avc.title, avc.description, avc.image); avc.renewData()">Submit</button>
     </div>
   </div>
 </form>
