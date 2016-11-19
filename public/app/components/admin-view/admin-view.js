@@ -20,10 +20,10 @@
         avc.jobs = []
         avc.badges = []
 
-        avc.BisualizeService.getAllPositions().then(data => { avc.positions = data })
-        avc.BisualizeService.getAllEmployees().then(data => {  avc.employees = data })
-        avc.BisualizeService.getAllJobs().then(data => { avc.jobs = data })
-        avc.BisualizeService.getAllBadges().then(data => { avc.badges = data })
+        avc.BisualizeService.getAllPositions().then(data => { isActive(data, 'positions') })
+        avc.BisualizeService.getAllEmployees().then(data => { isActive(data, 'employees') })
+        avc.BisualizeService.getAllJobs().then(data => { isActive(data, 'jobs') })
+        avc.BisualizeService.getAllBadges().then(data => { isActive(data, 'badges') })
 
         avc.activeView = 'Employees'
         avc.subActiveView = 'New'
@@ -57,10 +57,10 @@
         }
         //Renews active data after "new" things are added to each array
         avc.renewData = function () {
-            avc.BisualizeService.getAllJobs().then(isActive(data, avc.jobs))
-            avc.BisualizeService.getAllEmployees().then(isActive(data, avc.employees))
-            avc.BisualizeService.getAllPositions().then(isActive(data, avc.positions))
-            avc.BisualizeService.getAllBadges().then(isActive(data, avc.badges))
+            avc.BisualizeService.getAllPositions().then(data => { isActive(data, 'positions') })
+            avc.BisualizeService.getAllEmployees().then(data => { isActive(data, 'employees') })
+            avc.BisualizeService.getAllJobs().then(data => { isActive(data, 'jobs') })
+            avc.BisualizeService.getAllBadges().then(data => { isActive(data, 'badges') })
         }
 
         avc.updateJob = function (id, currentJob) {
@@ -220,7 +220,7 @@
                 })
         }
 
-        //Shows feedback message for 5 seconds
+        //Shows feedback message for 3 seconds
         avc.showFeedback = function () {
             update()
             setTimeout(function () {
@@ -228,19 +228,21 @@
                 avc.feedbackSuccess = false;
                 update()
                 avc.renewData()
-            }, 5000)
+            }, 3000)
         }
 
         //hides inactive objects
-        function isActive(data, type){
+        function isActive(data, type) {
+            let tempArr = []
             for (var i = 0; i < data.length; i++) {
                 var object = data[i];
-                if(object.active){
-                    avc.type.push(object)
+                if (object.active) {
+                    tempArr.push(object)
                 }
             }
+            avc[type] = tempArr
         }
-        
+
 
 
     }

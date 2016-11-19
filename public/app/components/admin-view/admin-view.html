@@ -50,6 +50,7 @@
       <label> Position ID</label>
         <input type="text" placeholder="Position ID" ng-model="avc.currentEmployee.positionId"/>
       <input id="terminate" ng-model="avc.currentEmployee.terminate" type="checkbox"><label for="terminate">Terminate Employee (CAUTION: This can't be undone)</label>
+      <br>
       <button type="button" class="button" ng-click="avc.updateEmployee(avc.currentEmployee.id, avc.currentEmployee)">Submit</button>
       <p ng-show="avc.feedbackSuccess">{{avc.feedback}}</p>
       <p ng-show="avc.feedbackFail">{{avc.feedback}}</p>
