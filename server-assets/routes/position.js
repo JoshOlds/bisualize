@@ -24,7 +24,7 @@ router.route('/:id?')
   .post(function (req, res, next) {
     Position.create(req.body, function (position) {
       if (position.stack) { return next(position) }
-      return res.send(position)
+      return res.send({message: "Position has been added"})
     })
   })
 

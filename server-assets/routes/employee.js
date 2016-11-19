@@ -27,7 +27,7 @@ router.route('/:id?')
     if(!newEmployee.name){return res.send({error: 'Please provide an employee "name" field'})}
     Employee.create(req.body, function (employee) {
       if (employee.stack) { return next(employee) }
-      return res.send(employee)
+      res.send({ message: `Employee has been added` })
     })
   })
 
@@ -51,7 +51,7 @@ router.route('/:id?')
         if (employee.badgeId) { Employee.addBadgeById(id, employee.badgeId) }
         if (employee.image) { Employee.updateImageById(id, employee.image) }
         if (employee.deleteBadgeId){ Employee.deleteBadgeById(id, employee.deleteBadgeId)}
-        res.send({ message: `Employee has been updated: ${id}` })
+        return res.send({message: `Employee has been updated: ${id}`})
       })
 
       .catch(err => {

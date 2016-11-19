@@ -25,7 +25,7 @@ router.route('/:id?')
     if(!newBadge.title || !newBadge.description){return res.send({error: 'Please provide a title and description!'})}
     Badge.create(req.body, function (badge) {
       if (badge.stack) { return next(badge) }
-      return res.send(badge)
+      return res.send({message: "Badge has been added"})
     })
   })
 

@@ -26,7 +26,7 @@ router.route('/:id?')
         if(!newJob.title || !newJob.description){return res.send({error: 'Please provide a title and description!'})}
         Job.create(req.body, function(job) {
             if (job.stack) { return next(job) }
-            return res.send(job)
+            return res.send({message: "Job has been created"})
         })
     })
 
