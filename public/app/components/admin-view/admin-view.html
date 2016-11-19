@@ -33,24 +33,28 @@
   </div>
 </form>
 
-<form class="edit-employee">
-  <div class="row" ng-show="avc.activeView == 'Employees' && avc.subActiveView == 'Edit'">
-    <div class="large-12 columns">
-      <label> Employee Name
-        <input type="text" placeholder="Name" ng-model="avc.name"/>
-      </label>
+<div class="row" ng-show="avc.activeView == 'Employees' && avc.subActiveView == 'Edit'">
+  <div class="large-12 columns">
+    <form class="edit-employee" id="employeeForm">
+      <label for="current-employee"> Employee Name </label>
+      <select id="current-employee" ng-model="avc.currentEmployee" ng-options="employee as employee.name for employee in avc.employees"></select>
+    </form>
+    <form ng-if="avc.currentEmployee">
+      <input type="text" placeholder="Name" ng-model="avc.currentEmployee.name" />
       <label> Profile Picture URL
-        <input type="url" placeholder="Picture URL" ng-model="avc.image"/>
+        <input type="url" placeholder="Picture URL" ng-model="avc.currentEmployee.image"/>
       </label>
       <label> Job ID
-        <input type="text" placeholder="Job ID" ng-model="avc.jobId"/>
+        <input type="text" placeholder="Job ID" ng-model="avc.currentEmployee.jobId"/>
       </label>
       <label> Position ID
-        <input type="text" placeholder="Position ID" ng-model="avc.positionId"/>
+        <input type="text" placeholder="Position ID" ng-model="avc.currentEmployee.positionId"/>
       </label>
-      <button type="button" class="button" ng-click="">Submit</button>
-    </div>
+      <button type="button" class="button" ng-click="avc.updateEmployee(avc.currentEmployee.id, avc.currentEmployee)">Submit</button>
+      <p ng-show="avc.feedbackSuccess">{{avc.feedback}}</p>
+      <p ng-show="avc.feedbackFail">{{avc.feedback}}</p>
   </div>
+</div>
 </form>
 
 <!--POSITIONS-->
@@ -60,7 +64,7 @@
       <label> Manager Position ID
         <input type="text" placeholder="Manager Position ID" ng-model="avc.managerPositionId"/>
       </label>
-      <button type="button" class="button" ng-click="">Submit</button>
+      <button type="button" class="button" ng-click="avc.BisualizeService.addPosition(avc.managerPositionId)">Submit</button>
     </div>
   </div>
 </form>
@@ -92,24 +96,29 @@
       <label> Job Description
         <textarea name="jobDescription" cols="30" rows="10" form="jobForm" ng-model="avc.description"></textarea>
       </label>
-      <button type="button" class="button" ng-click="">Submit</button>
+      <button type="button" class="button" ng-click="avc.BisualizeService.addJob(avc.title, avc.description)">Submit</button>
     </div>
   </div>
 </form>
 
-<form class="edit-job" id="jobForm">
-  <div class="row" ng-show="avc.activeView == 'Jobs' && avc.subActiveView == 'Edit'">
-    <div class="large-12 columns">
-      <label> Job Title
-        <input type="text" placeholder="Job Title" ng-model="avc.title"/>
-      </label>
+<div class="row" ng-show="avc.activeView == 'Jobs' && avc.subActiveView == 'Edit'">
+  <div class="large-12 columns">
+    <form class="edit-job" id="jobForm">
+      <label for="current-job"> Job Title </label>
+      <select id="current-job" ng-model="avc.currentJob" ng-options="job as job.title for job in avc.jobs"></select>
+    </form>
+    <form ng-if="avc.currentJob">
+      <input type="text" placeholder="Job Title" ng-model="avc.currentJob.title" />
       <label> Job Description
-        <textarea name="jobDescription" cols="30" rows="10" form="jobForm" ng-model="avc.description"></textarea>
+        <textarea name="jobDescription" cols="30" rows="10" form="jobForm" ng-model="avc.currentJob.description"></textarea>
       </label>
-      <button type="button" class="button" ng-click="">Submit</button>
-    </div>
+      <button type="button" class="button" ng-click="avc.updateJob(avc.currentJob.id, avc.currentJob)">Submit</button>
+      <p ng-show="avc.feedbackSuccess">{{avc.feedback}}</p>
+      <p ng-show="avc.feedbackFail">{{avc.feedback}}</p>
   </div>
+</div>
 </form>
+
 
 <!--BADGES-->
 <form class="new-badge" id="badgeForm">
@@ -119,12 +128,12 @@
         <input type="text" placeholder="Badge Title" ng-model="avc.title"/>
       </label>
       <label> Badge Picture URL
-        <input type="url" placeholder="Picture URL" ng-model="avc.image"/>
+        <input type="text" placeholder="Picture URL" ng-model="avc.image"/>
       </label>
       <label> Badge Description
         <textarea name="badgeDescription" cols="30" rows="10" form="badgeForm" ng-model="avc.description"></textarea>
       </label>
-      <button type="button" class="button" ng-click="">Submit</button>
+      <button type="button" class="button" ng-click="avc.BisualizeService.addBadge(avc.title, avc.description, avc.image)">Submit</button>
     </div>
   </div>
 </form>
@@ -141,7 +150,9 @@
       <input type="text" placeholder="Picture URL" ng-model="avc.currentBadge.image" />
       <label> Badge Description</label>
       <textarea name="badgeDescription" cols="30" rows="10" form="badgeForm" ng-model="avc.currentBadge.description"></textarea>
-      <button type="button" class="button" ng-click="avc.BisualizeService.updateBadge(avc.currentBadge.id, avc.currentBadge)">Submit</button>
+      <button type="button" class="button" ng-click="avc.updateBadge(avc.currentBadge.id, avc.currentBadge)">Submit</button>
+      <p ng-show="avc.feedbackSuccess">{{avc.feedback}}</p>
+      <p ng-show="avc.feedbackFail">{{avc.feedback}}</p>
   </div>
 </div>
 </form>

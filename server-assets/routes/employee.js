@@ -45,6 +45,7 @@ router.route('/:id?')
 
     Promise.all(schemeArr)
       .then(() => {
+        if (employee.name) { Employee.updateNameById(id, employee.name) }
         if (employee.jobId) { Employee.updateJobById(id, employee.jobId) }
         if (employee.positionId) { Employee.updatePositionById(id, employee.positionId) }
         if (employee.badgeId) { Employee.addBadgeById(id, employee.badgeId) }

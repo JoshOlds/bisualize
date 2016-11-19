@@ -230,7 +230,7 @@ angular.module('bisualize')
             })
         }
 
-        this.updateEmployee = function updateEmployee(id, updateData) {// updateData must be an object. Looking for any keys 'jobId', 'positionId', 'image'. 'badgeId' can be used to add a single badge. Cannot change name, must remake employee
+        this.updateEmployee = function updateEmployee(id, updateData) {// updateData must be an object. Looking for any keys 'name', jobId', 'positionId', 'image'. 'badgeId' can be used to add a single badge. 
             return new Promise((resolve, reject) => {
                 $.ajax({
                     url: baseUrl + employeeUrl + id,

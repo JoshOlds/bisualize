@@ -62,6 +62,10 @@ function updateJobById(id, jobId, cb){
     Employee.update(id, {jobId: jobId}).then(cb).catch(cb)
 }
 
+function updateNameById(id, name, cb){
+    Employee.update(id, {name: name}).then(cb).catch(cb)
+}
+
 function updatePositionById(id, positionId, cb){
     Employee.find(id).then(origEmployee =>{
         promiseArr = [
@@ -114,6 +118,7 @@ module.exports = {
   getById,
   updateJobById,
   updatePositionById,
+  updateNameById,
   addBadgeById,
   deleteBadgeById,
   terminateById,
