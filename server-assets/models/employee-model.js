@@ -63,6 +63,7 @@ function updateJobById(id, jobId, cb){
 }
 
 function updateNameById(id, name, cb){
+    if(!name){return cb({error: 'Must provide a name! Cannot be blank!'})}
     Employee.update(id, {name: name}).then(cb).catch(cb)
 }
 
@@ -106,6 +107,7 @@ function terminateById(id, cb){
 }
 
 function updateImageById(id, url, cb){
+    if(!url){return cb({error: 'Must provide a url! Cannot be blank'})}
     Employee.update(id, {image: url})
     .then(cb)
     .catch(cb)
