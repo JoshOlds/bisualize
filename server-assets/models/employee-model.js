@@ -72,7 +72,7 @@ function updatePositionById(id, positionId, cb){
             Employee.update(id, {positionId: positionId}),
             DS.update('position', positionId, {employeeId: id})
         ]
-        if(origEmployee.positionId != '-1'){promiseArr.push(DS.update('position', origEmployee.positionId, {employeeId: '-1'} ))}
+        if(origEmployee.positionId != '-1' && origEmployee.positionId != positionId){promiseArr.push(DS.update('position', origEmployee.positionId, {employeeId: '-1'} ))}
         Promise.all([promiseArr])
         .then(cb)
         .catch(cb)

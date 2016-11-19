@@ -15,8 +15,13 @@
         let employeeId = $stateParams.employeeId || '2878a62f-3a7c-4c0b-a4fc-6d6edd968b93'
         evc.reports = [];
 
+
         function update() {
-            evc.getReports()
+            for(let i = 0; i < evc.reports.length; i++){
+                if(evc.reports[i] === undefined){
+                    evc.reports.splice(i, 1);
+                }
+            }
             $scope.$evalAsync()
         }
 
@@ -25,10 +30,10 @@
                 .then(data => {
                     evc.employee = data
                     console.log(evc.employee)
-                    update()
+                     evc.getReports()
                 })
                 .catch(err => {
-                    console.log(err)
+                    // console.log(err)
                 })
         }
 
@@ -50,6 +55,7 @@
                     debugger
                     evc.reports.push(data.employee)
                     console.log(evc.reports)
+                    update()
                 })
             }
        }
