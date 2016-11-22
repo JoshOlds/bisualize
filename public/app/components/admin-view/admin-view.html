@@ -79,6 +79,8 @@
       <label for="current-position">Position</label>
       <select id="current-position" ng-model="avc.currentPosition" ng-options="position as ((position.job.title || 'No Title') + ' - ' + (position.employee.name || 'Empty')) for position in avc.positions"></select>
     </form>
+    <label for="manager-position" ng-if="avc.currentPosition.managerPositionId != '-1'">Manager</label>
+    <input type="text" ng-if="avc.currentPosition.managerPositionId != '-1'"ng-model="(avc.getManagerObj(avc.currentPosition.managerPositionId).employee.name || 'No Employee Assigned' )" disabled ></input>
     <label> Employee</label>
     <select ng-model="avc.currentPosition.employeeId" ng-options="employee.id as employee.name for employee in avc.employees"></select>
     <label> Job</label>

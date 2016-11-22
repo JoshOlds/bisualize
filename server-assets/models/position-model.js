@@ -73,7 +73,7 @@ function create(body, cb) {
 
 function getAll(query, cb) {
     //Use the Resource Model to get all positions
-    Position.findAll({}, { with: ["job", "employee"] }).then(cb).catch(cb)
+    Position.findAll({}, { with: ["job", "employee", "manager"] }).then(cb).catch(cb)
 }
 
 function getById(id, query, cb) {
@@ -107,11 +107,20 @@ function deleteById(id, cb) {
 
 
 function updateJobById(id, jobId, cb) {
-    if (jobId == -1) {
-        Position.update(id, { jobId: '' }).then(cb).catch(cb)
-        return;
-    }
-    Position.update(id, { jobId: jobId }).then(cb).catch(cb)
+    Position.find(id).then(position => {
+        if (jobId == -1) {
+            Position.update(id, { jobId: '-1' }).then(cb).catch(cb)
+            if (position.employeeId != '-1') {
+                DS.update('employee', position.employeeId, { jobId: '-1' })
+            }
+            return;
+        }
+        Position.update(id, { jobId: jobId }).then(cb).catch(cb)
+        if (position.employeeId != '-1') {
+            DS.update('employee', position.employeeId, { jobId: jobId })
+        }
+    })
+
 }
 
 function updateEmployeeById(id, employeeId, cb) {
@@ -135,15 +144,24 @@ function updateEmployeeById(id, employeeId, cb) {
         })
         return;
     }
-    Position.find(id).then(origPosition => {
-        let promiseArr = [
-            Position.update(id, { employeeId: employeeId }),
-            DS.update('employee', employeeId, { positionId: id })
-        ]
-        if (origPosition.employeeId != '-1' && origPosition.employeeId != employeeId) { promiseArr.push(DS.update('employee', origPosition.employeeId, { employeeId: '-1' })) }
-        Promise.all([promiseArr])
-            .then(cb)
-            .catch(cb)
+    Position.find(id, { with: ["job", "employee", "manager"] }).then(origPosition => {
+        DS.find('employee', employeeId).then(origEmp => {
+            let promiseArr = [
+                Position.update(id, { employeeId: employeeId }),
+                DS.update('employee', employeeId, { positionId: id })
+            ]
+            if (origPosition.employeeId != '-1' && origPosition.employeeId != employeeId) {
+                promiseArr.push(DS.update('employee', origPosition.employeeId, { positionId: '-1' }))
+            }
+            if (origEmp.positionId != '-1' && origEmp.positionId != id) {
+                promiseArr.push(Position.update(origEmp.positionId, { employeeId: '-1' }))
+                promiseArr.push(DS.update('employee', origEmp.id, {jobId: origPosition.jobId}))
+            }
+            Promise.all([promiseArr])
+                .then(cb)
+                .catch(cb)
+        })
+
     })
 
 }

@@ -295,6 +295,14 @@
             if(item.employeeId == '-1' || item.id == avc.currentEmployee.positionId){ return item}
         }
 
+        avc.getManagerObj = function getManagerObj(manId){
+            var manObj = {}
+            avc.positions.forEach(item =>{
+                if(item.id == manId){manObj = item}
+            })
+            return manObj;
+        }
+
 
 
     }
