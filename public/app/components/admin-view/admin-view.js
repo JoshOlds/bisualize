@@ -24,6 +24,7 @@
         avc.BisualizeService.getAllEmployees().then(data => { isActive(data, 'employees') })
         avc.BisualizeService.getAllJobs().then(data => { isActive(data, 'jobs') })
         avc.BisualizeService.getAllBadges().then(data => { avc.badges = data  })
+        
 
         avc.activeView = 'Employees'
         avc.subActiveView = 'New'
@@ -61,6 +62,7 @@
             avc.BisualizeService.getAllEmployees().then(data => { isActive(data, 'employees') })
             avc.BisualizeService.getAllJobs().then(data => { isActive(data, 'jobs') })
             avc.BisualizeService.getAllBadges().then(data => { avc.badges = data  })
+            
         }
 
         avc.updateJob = function (id, currentJob) {
@@ -163,7 +165,8 @@
         }
 
         avc.updateEmployee = function (id, currentEmployee) {
-            if (currentEmployee.terminate) {
+            if (currentEmployee.terminate) {// Add alert here
+                if(!confirm('Are you sure you want to terminate employee?')){return;}
                 avc.BisualizeService.deleteEmployee(id)
                     .then(function (data) {
                         if (data.message) {
@@ -213,6 +216,7 @@
 
         avc.updatePosition = function updatePosition(id, currentPosition) {
             if (currentPosition.terminate) {
+                if(!confirm('Are you sure you want to delete this position?')){return;}
                 avc.BisualizeService.deletePosition(id)
                     .then(function (data) {
                         if (data.message) {
@@ -227,6 +231,7 @@
                     })
                     return
             }
+            if(currentPosition.employeeId == ''){currentPosition.employeeId = '-1';}
             avc.BisualizeService.updatePosition(id, currentPosition)
                 .then(function (data) {
                     if (data.message) {
@@ -241,8 +246,8 @@
                 })
         }
 
-        avc.addPosition = function (managerPositionId) {
-            avc.BisualizeService.addPosition(managerPositionId)
+        avc.addPosition = function (managerPositionId, jobId) {
+            avc.BisualizeService.addPosition(managerPositionId, jobId)
                 .then(function (data) {
                     debugger
                     if (data.message) {
@@ -283,6 +288,11 @@
                 }
             }
             avc[type] = tempArr
+            avc[type].unshift({id: '-1', name: 'None', title: 'None'})
+        }
+
+        avc.occupied = function occupied(item){
+            if(item.employeeId == '-1' || item.id == avc.currentEmployee.positionId){ return item}
         }
 
 

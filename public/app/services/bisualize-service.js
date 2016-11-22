@@ -178,9 +178,9 @@ angular.module('bisualize')
 
         }
 
-        this.addPosition = function addPosition(managerPositionId) { //Adds a new position. Requires existing managerPositionId
+        this.addPosition = function addPosition(managerPositionId, jobId) { //Adds a new position. Requires existing managerPositionId
             return new Promise((resolve, reject) => {
-                var postData = { managerPositionId: managerPositionId }
+                var postData = { managerPositionId: managerPositionId, jobId: jobId }
                 $.post(baseUrl + positionUrl, postData)
                     .then(data => {
                         return resolve(data)

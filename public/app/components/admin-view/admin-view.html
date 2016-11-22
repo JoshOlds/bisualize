@@ -23,9 +23,9 @@
   <div class="row" ng-show="(avc.activeView == 'Employees' && avc.subActiveView == 'New')">
     <div class="large-12 columns">
       <label> Employee Name</label>
-        <input type="text" placeholder="Name" ng-model="avc.name" />
+      <input type="text" placeholder="Name" ng-model="avc.name" />
       <label> Profile Picture URL</label>
-        <input type="url" placeholder="Picture URL" ng-model="avc.image"/>
+      <input type="url" placeholder="Picture URL" ng-model="avc.image" />
       <button type="button" class="button" ng-click="avc.addEmployee(avc.name, avc.image); avc.renewData()">Submit</button>
       <p ng-show="avc.feedbackSuccess">{{avc.feedback}}</p>
       <p ng-show="avc.feedbackFail">{{avc.feedback}}</p>
@@ -40,16 +40,14 @@
       <select id="current-employee" ng-model="avc.currentEmployee" ng-options="employee as employee.name for employee in avc.employees"></select>
     </form>
     <form ng-if="avc.currentEmployee">
-      <input type="text" placeholder="Name" ng-model="avc.currentEmployee.name"  />
+      <label> Edit Name</label>
+      <input type="text" placeholder="Name" ng-model="avc.currentEmployee.name" />
       <label> Profile Picture URL</label>
-        <input type="url" placeholder="Picture URL" ng-model="avc.currentEmployee.image" />
-      <label> Job ID</label>
-        <input type="text" placeholder="Job ID" ng-model="avc.currentEmployee.jobId"/>
-      <label> Position</label>
-        <input type="text" placeholder="Position ID" ng-model="avc.currentEmployee.positionId"/>
-        <select ng-model="avc.currentEmployee.positionId">
-          <option value="{{position.id}}" ng-repeat="position in avc.positions">{{position.id}}</option>
-        </select>
+      <input type="url" placeholder="Picture URL" ng-model="avc.currentEmployee.image" />
+      <label> Job </label>
+      <select ng-model="avc.currentEmployee.jobId" ng-options="job.id as job.title for job in avc.jobs"></select>
+      <label> Available Position</label>
+      <select id="manager-position" ng-model="avc.currentEmployee.positionId" ng-options="position.id as ((position.job.title || 'No Title') + ' - ' + (position.employee.name || 'Empty')) for position in avc.positions.filter(avc.occupied)"></select>
       <input id="terminate" ng-model="avc.currentEmployee.terminate" type="checkbox"><label for="terminate">Terminate Employee (CAUTION: This can't be undone)</label>
       <br>
       <button type="button" class="button" ng-click="avc.updateEmployee(avc.currentEmployee.id, avc.currentEmployee)">Submit</button>
@@ -63,12 +61,14 @@
 <div class="row" ng-show="avc.activeView == 'Positions' && avc.subActiveView == 'New'">
   <div class="large-12 columns">
     <form class="new-position" id="positionForm">
-      <label for="manager-position">Manager Position ID</label>
-      <select id="manager-position" ng-model="avc.currentManagerPositionId" ng-options="position as position.id for position in avc.positions"></select>
-      <button type="button" class="button" ng-click="avc.addPosition(avc.currentManagerPositionId.id); avc.renewData()">Submit</button>
+      <label for="manager-position">Manager Position</label>
+      <select id="manager-position" ng-model="avc.currentManagerPositionId" ng-options="position as ((position.job.title || 'No Title') + ' - ' + (position.employee.name || 'Empty')) for position in avc.positions"></select>
+      <label for="jobId-position">Job</label>
+      <select id="jobId-position" ng-model="avc.currentJobId" ng-options="job.id as job.title for job in avc.jobs"></select>
+      <button type="button" class="button" ng-click="avc.addPosition(avc.currentManagerPositionId.id, avc.currentJobId); avc.renewData()">Submit</button>
     </form>
-      <p ng-show="avc.feedbackSuccess">{{avc.feedback}}</p>
-      <p ng-show="avc.feedbackFail">{{avc.feedback}}</p>
+    <p ng-show="avc.feedbackSuccess">{{avc.feedback}}</p>
+    <p ng-show="avc.feedbackFail">{{avc.feedback}}</p>
   </div>
 </div>
 
@@ -76,17 +76,18 @@
 <div class="row" ng-show="avc.activeView == 'Positions' && avc.subActiveView == 'Edit'">
   <div class="large-12 columns">
     <form class="edit-position" id="positionForm">
-      <label for="current-position">Manager Position ID</label>
-      <select id="current-position" ng-model="avc.currentPosition" ng-options="position as position.id for position in avc.positions"></select>
+      <label for="current-position">Position</label>
+      <select id="current-position" ng-model="avc.currentPosition" ng-options="position as ((position.job.title || 'No Title') + ' - ' + (position.employee.name || 'Empty')) for position in avc.positions"></select>
     </form>
-    <label> Employee ID</label>
-    <input type="text" placeholder="Employee ID" ng-model="avc.currentPosition.employeeId" />
-    <label> Job ID</label>
-    <input type="text" placeholder="Job ID" ng-model="avc.currentPosition.jobId" />
+    <label> Employee</label>
+    <select ng-model="avc.currentPosition.employeeId" ng-options="employee.id as employee.name for employee in avc.employees"></select>
+    <label> Job</label>
+    <select ng-model="avc.currentPosition.jobId" ng-options="job.id as job.title for job in avc.jobs"></select>
+
     <input id="terminate" ng-model="avc.currentPosition.terminate" type="checkbox"><label for="terminate">Delete Position (CAUTION: This position must not have reports. This can't be undone)</label>
     <br>
     <button type="button" class="button" ng-click="avc.updatePosition(avc.currentPosition.id, avc.currentPosition )">Submit</button>
-     <p ng-show="avc.feedbackSuccess">{{avc.feedback}}</p>
+    <p ng-show="avc.feedbackSuccess">{{avc.feedback}}</p>
     <p ng-show="avc.feedbackFail">{{avc.feedback}}</p>
   </div>
 </div>
@@ -97,9 +98,9 @@
   <div class="row" ng-show="avc.activeView == 'Jobs' && avc.subActiveView == 'New'">
     <div class="large-12 columns">
       <label> Job Title</label>
-        <input type="text" placeholder="Job Title" ng-model="avc.title" />
+      <input type="text" placeholder="Job Title" ng-model="avc.title" />
       <label> Job Description</label>
-        <textarea name="jobDescription" cols="30" rows="10" form="jobForm" ng-model="avc.description" ></textarea>
+      <textarea name="jobDescription" cols="30" rows="10" form="jobForm" ng-model="avc.description"></textarea>
       <button type="button" class="button" ng-click="avc.addJob(avc.title, avc.description); avc.renewData()">Submit</button>
       <p ng-show="avc.feedbackSuccess">{{avc.feedback}}</p>
       <p ng-show="avc.feedbackFail">{{avc.feedback}}</p>
@@ -111,12 +112,12 @@
   <div class="large-12 columns">
     <form class="edit-job" id="jobForm">
       <label for="current-job"> Job Title </label>
-      <select id="current-job" ng-model="avc.currentJob" ng-options="job as job.title for job in avc.jobs" ></select>
+      <select id="current-job" ng-model="avc.currentJob" ng-options="job as job.title for job in avc.jobs"></select>
     </form>
     <form ng-if="avc.currentJob">
-      <input type="text" placeholder="Job Title" ng-model="avc.currentJob.title"  />
+      <input type="text" placeholder="Job Title" ng-model="avc.currentJob.title" />
       <label> Job Description</label>
-        <textarea name="jobDescription" cols="30" rows="10" form="jobForm" ng-model="avc.currentJob.description" ></textarea>
+      <textarea name="jobDescription" cols="30" rows="10" form="jobForm" ng-model="avc.currentJob.description"></textarea>
       <input id="terminate" ng-model="avc.currentJob.terminate" type="checkbox"><label for="terminate">Delete Job (CAUTION: This can't be undone)</label>
       <br>
       <button type="button" class="button" ng-click="avc.updateJob(avc.currentJob.id, avc.currentJob)">Submit</button>
@@ -132,11 +133,11 @@
   <div class="row" ng-show="avc.activeView == 'Badges' && avc.subActiveView == 'New'">
     <div class="large-12 columns">
       <label> Badge Title</label>
-        <input type="text" placeholder="Badge Title" ng-model="avc.badgeTitle" />
+      <input type="text" placeholder="Badge Title" ng-model="avc.badgeTitle" />
       <label> Badge Picture URL</label>
-        <input type="text" placeholder="Picture URL" ng-model="avc.badgeImage"/>
+      <input type="text" placeholder="Picture URL" ng-model="avc.badgeImage" />
       <label> Badge Description</label>
-        <textarea name="badgeDescription" cols="30" rows="10" form="badgeForm" ng-model="avc.badgeDescription" ></textarea>
+      <textarea name="badgeDescription" cols="30" rows="10" form="badgeForm" ng-model="avc.badgeDescription"></textarea>
       <button type="button" class="button" ng-click="avc.addBadge(avc.badgeTitle, avc.badgeDescription, avc.badgeImage); avc.renewData()">Submit</button>
       <p ng-show="avc.feedbackSuccess">{{avc.feedback}}</p>
       <p ng-show="avc.feedbackFail">{{avc.feedback}}</p>
@@ -155,7 +156,7 @@
       <label>Badge Picture URL</label>
       <input type="text" placeholder="Picture URL" ng-model="avc.currentBadge.image" />
       <label> Badge Description</label>
-      <textarea name="badgeDescription" cols="30" rows="10" form="badgeForm" ng-model="avc.currentBadge.description" ></textarea>
+      <textarea name="badgeDescription" cols="30" rows="10" form="badgeForm" ng-model="avc.currentBadge.description"></textarea>
       <input id="terminate" ng-model="avc.currentBadge.terminate" type="checkbox"><label for="terminate">Delete Badge (CAUTION: This can't be undone)</label>
       <br>
       <button type="button" class="button" ng-click="avc.updateBadge(avc.currentBadge.id, avc.currentBadge)">Submit</button>
