@@ -26,7 +26,7 @@
       <input type="text" placeholder="Name" ng-model="avc.name" />
       <label> Profile Picture URL</label>
       <input type="url" placeholder="Picture URL" ng-model="avc.image" />
-      <button type="button" class="button" ng-click="avc.addEmployee(avc.name, avc.image); avc.renewData()">Submit</button>
+      <button type="button" class="button" ng-click="avc.addEmployee(avc.name, avc.image); ">Submit</button>
       <p ng-show="avc.feedbackSuccess">{{avc.feedback}}</p>
       <p ng-show="avc.feedbackFail">{{avc.feedback}}</p>
     </div>
@@ -65,7 +65,7 @@
       <select id="manager-position" ng-model="avc.currentManagerPositionId" ng-options="position as ((position.job.title || 'No Title') + ' - ' + (position.employee.name || 'Empty')) for position in avc.positions"></select>
       <label for="jobId-position">Job</label>
       <select id="jobId-position" ng-model="avc.currentJobId" ng-options="job.id as job.title for job in avc.jobs"></select>
-      <button type="button" class="button" ng-click="avc.addPosition(avc.currentManagerPositionId.id, avc.currentJobId); avc.renewData()">Submit</button>
+      <button type="button" class="button" ng-click="avc.addPosition(avc.currentManagerPositionId.id, avc.currentJobId); ">Submit</button>
     </form>
     <p ng-show="avc.feedbackSuccess">{{avc.feedback}}</p>
     <p ng-show="avc.feedbackFail">{{avc.feedback}}</p>
@@ -103,7 +103,7 @@
       <input type="text" placeholder="Job Title" ng-model="avc.title" />
       <label> Job Description</label>
       <textarea name="jobDescription" cols="30" rows="10" form="jobForm" ng-model="avc.description"></textarea>
-      <button type="button" class="button" ng-click="avc.addJob(avc.title, avc.description); avc.renewData()">Submit</button>
+      <button type="button" class="button" ng-click="avc.addJob(avc.title, avc.description); ">Submit</button>
       <p ng-show="avc.feedbackSuccess">{{avc.feedback}}</p>
       <p ng-show="avc.feedbackFail">{{avc.feedback}}</p>
     </div>
@@ -140,7 +140,7 @@
       <input type="text" placeholder="Picture URL" ng-model="avc.badgeImage" />
       <label> Badge Description</label>
       <textarea name="badgeDescription" cols="30" rows="10" form="badgeForm" ng-model="avc.badgeDescription"></textarea>
-      <button type="button" class="button" ng-click="avc.addBadge(avc.badgeTitle, avc.badgeDescription, avc.badgeImage); avc.renewData()">Submit</button>
+      <button type="button" class="button" ng-click="avc.addBadge(avc.badgeTitle, avc.badgeDescription, avc.badgeImage); ">Submit</button>
       <p ng-show="avc.feedbackSuccess">{{avc.feedback}}</p>
       <p ng-show="avc.feedbackFail">{{avc.feedback}}</p>
     </div>

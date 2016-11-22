@@ -20,11 +20,11 @@
         avc.jobs = []
         avc.badges = []
 
-        avc.BisualizeService.getAllPositions().then(data => { avc.positions = data  })
+        avc.BisualizeService.getAllPositions().then(data => { avc.positions = data })
         avc.BisualizeService.getAllEmployees().then(data => { isActive(data, 'employees') })
         avc.BisualizeService.getAllJobs().then(data => { isActive(data, 'jobs') })
-        avc.BisualizeService.getAllBadges().then(data => { avc.badges = data  })
-        
+        avc.BisualizeService.getAllBadges().then(data => { avc.badges = data })
+
 
         avc.activeView = 'Employees'
         avc.subActiveView = 'New'
@@ -58,11 +58,21 @@
         }
         //Renews active data after "new" things are added to each array
         avc.renewData = function () {
-            avc.BisualizeService.getAllPositions().then(data => { avc.positions = data  })
-            avc.BisualizeService.getAllEmployees().then(data => { isActive(data, 'employees') })
-            avc.BisualizeService.getAllJobs().then(data => { isActive(data, 'jobs') })
-            avc.BisualizeService.getAllBadges().then(data => { avc.badges = data  })
-            
+
+            Promise.all([
+                avc.BisualizeService.getAllPositions(),
+                avc.BisualizeService.getAllEmployees(),
+                avc.BisualizeService.getAllJobs(),
+                avc.BisualizeService.getAllBadges()
+            ])
+            .then(data =>{
+                avc.positions = data[0];
+                isActive(data[1], 'employees');
+                isActive(data[2], 'jobs'),
+                avc.badges = data[3]
+                update()
+                updateSpinner(false);
+            })
         }
 
         avc.updateJob = function (id, currentJob) {
@@ -128,7 +138,7 @@
                             avc.showFeedback()
                         }
                     })
-                    return
+                return
             }
             avc.BisualizeService.updateBadge(id, currentBadge)
                 .then(function (data) {
@@ -166,7 +176,7 @@
 
         avc.updateEmployee = function (id, currentEmployee) {
             if (currentEmployee.terminate) {// Add alert here
-                if(!confirm('Are you sure you want to terminate employee?')){return;}
+                if (!confirm('Are you sure you want to terminate employee?')) { return; }
                 avc.BisualizeService.deleteEmployee(id)
                     .then(function (data) {
                         if (data.message) {
@@ -216,7 +226,7 @@
 
         avc.updatePosition = function updatePosition(id, currentPosition) {
             if (currentPosition.terminate) {
-                if(!confirm('Are you sure you want to delete this position?')){return;}
+                if (!confirm('Are you sure you want to delete this position?')) { return; }
                 avc.BisualizeService.deletePosition(id)
                     .then(function (data) {
                         if (data.message) {
@@ -229,9 +239,9 @@
                             avc.showFeedback()
                         }
                     })
-                    return
+                return
             }
-            if(currentPosition.employeeId == ''){currentPosition.employeeId = '-1';}
+            if (currentPosition.employeeId == '') { currentPosition.employeeId = '-1'; }
             avc.BisualizeService.updatePosition(id, currentPosition)
                 .then(function (data) {
                     if (data.message) {
@@ -270,11 +280,12 @@
         //Shows feedback message for 3 seconds
         avc.showFeedback = function () {
             update()
+            updateSpinner(true);
+            setTimeout(avc.renewData, 1500);
             setTimeout(function () {
                 avc.feedbackFail = false;
                 avc.feedbackSuccess = false;
                 update()
-                avc.renewData()
             }, 3000)
         }
 
@@ -288,19 +299,23 @@
                 }
             }
             avc[type] = tempArr
-            avc[type].unshift({id: '-1', name: 'None', title: 'None'})
+            avc[type].unshift({ id: '-1', name: 'None', title: 'None' })
         }
 
-        avc.occupied = function occupied(item){
-            if(item.employeeId == '-1' || item.id == avc.currentEmployee.positionId){ return item}
+        avc.occupied = function occupied(item) {
+            if (item.employeeId == '-1' || item.id == avc.currentEmployee.positionId) { return item }
         }
 
-        avc.getManagerObj = function getManagerObj(manId){
+        avc.getManagerObj = function getManagerObj(manId) {
             var manObj = {}
-            avc.positions.forEach(item =>{
-                if(item.id == manId){manObj = item}
+            avc.positions.forEach(item => {
+                if (item.id == manId) { manObj = item }
             })
             return manObj;
+        }
+
+        function updateSpinner(isOn){
+
         }
 
 
