@@ -1,0 +1,32 @@
+$darkBase: #37474F;
+$lightBase: #ECEFF1;
+
+.emp-details {
+    padding: 5vh
+}
+
+.navigation {
+   background-color: $darkBase
+}
+
+.tabs-title {
+    display: inline-block
+}
+
+.is-active{ 
+    background: $lightBase
+} 
+
+.emp-photo{
+    border-radius: 50%;
+    height: 300px;
+    width: 300px;
+    border-right: 1px grey;
+}
+
+.emp-badges{
+    width: 300px; //Match the width of the image
+    margin-top: 20px;
+}
+
+

@@ -7,7 +7,7 @@ angular.module('bisualize')
         $stateProvider
             .state({
                 name: 'empView',
-                url: '/mypage/?employeeId',
+                url: '/mypage/:employeeId',
                 template: '<emp-view></emp-view>' 
             })
 

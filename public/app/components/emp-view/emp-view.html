@@ -1,6 +1,9 @@
 <div class="row emp-details">
     <div class="small-5 columns emp-photo">
-        <img src="{{evc.employee.image}}" alt="" height="300" width="300">
+        <img id="emp-photo" class="emp-photo" src="{{evc.employee.image}}" alt="Image of {{evc.employee.name}}">
+        <div id="emp-badges" class ="emp-badges badges-padding" ng-repeat="badge in evc.employee.badges">
+            <img src="{{badge.image}}" class="badge">
+        </div>
     </div>
     <div class="small-7 columns">
         <div class="row">
@@ -18,21 +21,8 @@
                 <h3>{{evc.employee.job.description}}</h3>
             </div>
         </div>
-        <!--<div class="row">
-            <div class="small-12 columns" ng-if="{{evc.employee.position.managerPositionId !== -1}}">-->
-        <!--managerPosId-->
-        <!--managerName-->
-        <!--<h3>{{evc.employee.position.manager}}</h3>
-            </div>
-        </div>-->
 
-        <!--<div class="row">
-            <div class="small-12 columns">-->
-        <!--Quote-->
-        <!--Quote-->
-        <!--<h3>"It's kind of fun to do the impossible"</h3>
-            </div>
-        </div>-->
+        <hr>
 
         <div class="row">
             <div class="small-12 columns">
@@ -42,7 +32,7 @@
                 <form class="request-badge" id="requestedBadgeForm">
                     <label for="requested-badge"> Badge Titles </label>
                     <select id="requested-badge" ng-model="evc.requestedBadges" ng-options="badge as badge.title for badge in evc.badges"></select>
-                    <button type="button" class="button" >Submit Request</button>
+                    <button type="button" class="button">Submit Request</button>
                 </form>
             </div>
         </div>
@@ -57,11 +47,6 @@
 </div>
 </div>-->
 <!--employeeId-->
-<div class="row small-collapse medium-collapse large-collapse">
-    <div class="small-1 columns badges badges-padding" ng-repeat="badge in evc.employee.badges">
-        <img src="{{badge.image}}" class="badge">
-    </div>
-</div>
 <div class="row">
     <div class="small-12 columns">
         <!--managerPosId-->

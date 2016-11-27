@@ -48,6 +48,8 @@
       <select ng-model="avc.currentEmployee.jobId" ng-options="job.id as job.title for job in avc.jobs"></select>
       <label> Available Position</label>
       <select id="manager-position" ng-model="avc.currentEmployee.positionId" ng-options="position.id as ((position.job.title || 'No Title') + ' - ' + (position.employee.name || 'Empty')) for position in avc.positions.filter(avc.occupied)"></select>
+      <label for="add-badge">Add Badge</label>
+      <select id="add-badge" ng-model="avc.currentEmployee.badgeId" ng-options="badge.id as badge.title for badge in avc.badges"></badges>
       <input id="terminate" ng-model="avc.currentEmployee.terminate" type="checkbox"><label for="terminate">Terminate Employee (CAUTION: This can't be undone)</label>
       <br>
       <button type="button" class="button" ng-click="avc.updateEmployee(avc.currentEmployee.id, avc.currentEmployee)">Submit</button>

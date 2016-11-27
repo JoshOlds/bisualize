@@ -9,3 +9,13 @@
 
 .is-active {
   background: #ECEFF1; }
+
+.emp-photo {
+  border-radius: 50%;
+  height: 300px;
+  width: 300px;
+  border-right: 1px grey; }
+
+.emp-badges {
+  width: 300px;
+  margin-top: 20px; }
