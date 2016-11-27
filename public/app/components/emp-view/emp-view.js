@@ -12,9 +12,10 @@
 
     function EmpViewController($scope, $stateParams, BisualizeService) {
         let evc = this
-        let employeeId = $stateParams.employeeId// || '5bd5255b-e58b-476c-9b5b-f808403e4104' //Update this to CEO emp id
+        let employeeId = $stateParams.employeeId || '5bd5255b-e58b-476c-9b5b-f808403e4104' //Update this to CEO emp id
         evc.reports = [];
         evc.badges = [];
+        evc.manager = {};
 
 
         function update() {
@@ -33,6 +34,7 @@
 
                     evc.getReports()
                     evc.getBadges()
+                    evc.getManager()
                 })
                 .catch(err => {
                     // console.log(err)
@@ -54,7 +56,7 @@
             for (id in reports) {
                 BisualizeService.getPosition(reports[id])
                     .then(data => {
-                        evc.reports.push(data.employee)
+                        evc.reports.push(data)
 
                         update()
                     })
@@ -71,6 +73,18 @@
                     evc.badges = data
                     update()
                 })
+        }
+
+        evc.getManager = function getManager(){
+            BisualizeService.getPosition(evc.employee.position.managerPositionId)
+            .then(data =>{
+                evc.manager = data;
+                update()
+            })
+        }
+
+        evc.filterReports = function filterReports(item){
+            if(item.employee.name){return item} //Makes sure employees are attached to reports
         }
 
     }

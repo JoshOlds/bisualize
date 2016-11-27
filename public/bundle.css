@@ -1,3 +1,9 @@
+.text-center {
+  text-align: center; }
+
+.rounded {
+  border-radius: 50%; }
+
 .emp-details {
   padding: 5vh; }
 
@@ -17,5 +23,19 @@
   border-right: 1px grey; }
 
 .emp-badges {
-  width: 300px;
   margin-top: 20px; }
+
+.badges-padding {
+  margin: 2px; }
+
+.emp-manager {
+  border-right: 1px solid lightgray; }
+
+.emp-bottom-section {
+  border-top: 1px solid lightgray; }
+
+.emp-manager-image {
+  border-radius: 50%; }
+
+.emp-reports-image {
+  border-radius: 50%; }

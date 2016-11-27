@@ -1,9 +1,12 @@
 <div class="row emp-details">
-    <div class="small-5 columns emp-photo">
+    <div class="small-5 text-center columns emp-photo">
         <img id="emp-photo" class="emp-photo" src="{{evc.employee.image}}" alt="Image of {{evc.employee.name}}">
-        <div id="emp-badges" class ="emp-badges badges-padding" ng-repeat="badge in evc.employee.badges">
-            <img src="{{badge.image}}" class="badge">
+        <div class="row align-center emp-badges">
+            <div id="emp-badges" class="badges-padding small-2 columns" ng-repeat="badge in evc.employee.badges">
+                <img src="{{badge.image}}" class="badge" alt="{{badge.title}}" title="{{badge.title}}">
+            </div>
         </div>
+
     </div>
     <div class="small-7 columns">
         <div class="row">
@@ -40,22 +43,31 @@
 
     </div>
 </div>
-<!--<div class="row">
-<div class="columns small-12">
-        <h4>Badges</h4>
 
-</div>
-</div>-->
-<!--employeeId-->
-<div class="row">
-    <div class="small-12 columns">
-        <!--managerPosId-->
+<div class="row emp-bottom-section">
+    <div class="small-2 columns emp-manager">
+        <h4>Manager</h4>
+        <a href="/#/mypage/{{evc.manager.employeeId}}">
+            <img class="emp-manager-image" src="{{evc.manager.employee.image}}">
+        </a>
+        <h5 class="text-center">{{evc.manager.employee.name}}</h5>
+        <!--<h5 class="text-center">{{evc.employee.position.manager.name}}</h5> We dont have access to name here...-->
+    </div>
+    <div class="small-10 columns">
         <h4>Reports</h4>
+        <div class="row">
+            <!--managerPosId-->
+
+            <div class="small-2 columns" ng-repeat="report in evc.reports.filter(evc.filterReports)">
+                <a href="/#/mypage/{{report.employee.id}}">
+                    <img class="emp-reports-image" src="{{report.employee.image}}">
+                </a>
+                <h8 class="text-center">{{report.employee.name}} - {{report.job.title}}</h8>
+            </div>
+        </div>
+
     </div>
-    <div class="small-1 columns" ng-repeat="report in evc.reports">
-        <img src="{{report.image}}">
-        <h5>{{report.name}}</h5>
-    </div>
+
 
 
     <!--<button class="button" ng-click="evc.getAllEmployees()">Get employee</button>-->
