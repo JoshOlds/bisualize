@@ -30,6 +30,12 @@
 .tabs-title {
   display: inline-block; }
 
+.spacer {
+  padding: 4vh; }
+
+.is-active {
+  background: white; }
+
 .admin-details a {
   color: #002f4c;
   font-weight: 500;
