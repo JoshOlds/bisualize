@@ -1,5 +1,30 @@
-$darkBase: #37474F;
+$darkBase:#002f4c;
 $lightBase: #ECEFF1;
+$darkLight: darken($lightBase, 35%);
+
+
+.badge-request{
+    background-color:$darkBase;
+    color: $lightBase;
+}
+
+.badge{
+    background-color: $darkLight; 
+}
+
+
+.top-biz{
+    background-color:$darkBase;
+    color: $lightBase;
+}
+
+.top-biz a{
+    color: $lightBase;
+}
+
+.top-bar ul{
+    background-color: $darkBase;
+}
 
 .text-center{
     text-align: center;
@@ -10,7 +35,7 @@ $lightBase: #ECEFF1;
 }
 
 .emp-details {
-    padding: 5vh
+    padding: 5vh;
 }
 
 .navigation {
@@ -21,9 +46,13 @@ $lightBase: #ECEFF1;
     display: inline-block
 }
 
-.is-active{ 
-    background: $lightBase
-} 
+// .is-active{ 
+//     background: $lightBase
+// } 
+
+.admin-details a{
+    color:$darkBase;
+}
 
 .emp-photo{
     border-radius: 50%;
