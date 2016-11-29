@@ -1,16 +1,16 @@
 .badge-request {
   background-color: #002f4c;
-  color: #ECEFF1; }
+  color: white; }
 
 .badge {
-  background-color: #8598a5; }
+  background-color: #a6a6a6; }
 
 .top-biz {
   background-color: #002f4c;
-  color: #ECEFF1; }
+  color: white; }
 
 .top-biz a {
-  color: #ECEFF1; }
+  color: white; }
 
 .top-bar ul {
   background-color: #002f4c; }
@@ -31,7 +31,9 @@
   display: inline-block; }
 
 .admin-details a {
-  color: #002f4c; }
+  color: #002f4c;
+  font-weight: 500;
+  font-size: .875rem; }
 
 .emp-photo {
   border-radius: 50%;

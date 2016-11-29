@@ -1,5 +1,6 @@
 $darkBase:#002f4c;
-$lightBase: #ECEFF1;
+// $lightBase: #ECEFF1;
+$lightBase: white;
 $darkLight: darken($lightBase, 35%);
 
 
@@ -52,6 +53,8 @@ $darkLight: darken($lightBase, 35%);
 
 .admin-details a{
     color:$darkBase;
+        font-weight: 500;
+    font-size: .875rem;
 }
 
 .emp-photo{
