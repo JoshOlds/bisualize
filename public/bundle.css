@@ -41,6 +41,9 @@
   width: 300px;
   border-right: 1px grey; }
 
+.admin-button {
+  background-color: #002f4c; }
+
 .emp-badges {
   margin-top: 20px; }
 

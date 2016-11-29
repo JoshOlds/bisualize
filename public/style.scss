@@ -64,6 +64,10 @@ $darkLight: darken($lightBase, 35%);
     border-right: 1px grey;
 }
 
+.admin-button{
+    background-color: $darkBase;
+}
+
 .emp-badges{
     //width: 300px; //Match the width of the image
     margin-top: 20px;
