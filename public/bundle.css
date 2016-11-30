@@ -1,3 +1,10 @@
+* {
+  font-family: 'Fira Sans', sans-serif !important; }
+
+.header {
+  margin: 0px 0px 0px 10px;
+  font-size: 48px; }
+
 .badge-request {
   background-color: #002f4c;
   color: white; }
@@ -5,7 +12,14 @@
 .badge {
   background-color: #e6e6e6; }
 
+.logo {
+  position: absolute;
+  right: 25px;
+  top: 10px;
+  height: 165px; }
+
 .top-biz {
+  position: relative;
   background-color: #002f4c;
   color: white; }
 

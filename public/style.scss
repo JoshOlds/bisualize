@@ -3,6 +3,19 @@ $darkBase:#002f4c;
 $lightBase: white;
 $darkLight: darken($lightBase, 10%);
 $active: darken($lightBase, 5%);
+$body-font-family: 'Fira Sans', sans-serif;
+$header-font-family: 'Fira Sans', sans-serif;
+$paragraph-font-family: 'Fira Sans', sans-serif;
+$topbar-link-font-family: 'Fira Sans', sans-serif;
+
+*{
+    font-family: 'Fira Sans', sans-serif !important;
+}
+
+.header{
+    margin: 0px 0px 0px 10px;
+    font-size: 48px;
+}
 
 .badge-request{
     background-color:$darkBase;
@@ -13,8 +26,14 @@ $active: darken($lightBase, 5%);
     background-color: $darkLight; 
 }
 
-
+.logo{
+    position: absolute;
+    right: 25px;
+    top: 10px;
+    height: 165px;
+}
 .top-biz{
+    position: relative;
     background-color:$darkBase;
     color: $lightBase;
 }
