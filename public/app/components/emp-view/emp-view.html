@@ -45,25 +45,27 @@
 </div>
 
 <div class="row emp-bottom-section">
-    <div class="small-2 columns emp-manager">
+    <div class="small-2 columns emp-manager text-center" ng-show="evc.manager.id">
         <h4>Manager</h4>
         <a href="/#/mypage/{{evc.manager.employeeId}}">
             <img class="emp-manager-image" src="{{evc.manager.employee.image}}">
         </a>
-        <h5 class="text-center">{{evc.manager.employee.name}}</h5>
-        <h5 class="text-center">{{evc.manager.job.title}}</h5>
+        <h8 class="text-center">{{evc.manager.employee.name}}</h8>
+        <br>
+        <h8 class="text-center">{{evc.manager.job.title}}</h8>
         <!--<h5 class="text-center">{{evc.employee.position.manager.name}}</h5> We dont have access to name here...-->
     </div>
-    <div class="small-10 columns">
+    <div class="small-10 columns" ng-show="evc.reports.length > 0">
         <h4>Reports</h4>
         <div class="row">
             <!--managerPosId-->
 
-            <div class="small-2 columns" ng-repeat="report in evc.reports.filter(evc.filterReports)">
+            <div class="small-2 columns text-center" ng-repeat="report in evc.reports.filter(evc.filterReports)">
                 <a href="/#/mypage/{{report.employee.id}}">
                     <img class="emp-reports-image" src="{{report.employee.image}}">
                 </a>
                 <h8 class="text-center">{{report.employee.name}}</h8>
+                <br>
                 <h8 class="text-center">{{report.job.title}}</h8>
             </div>
         </div>

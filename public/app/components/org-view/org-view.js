@@ -19,64 +19,68 @@
             showTree();
         })
 
-        function showTree(){
+        function showTree() {
 
             let chartConfig = {};
             let nodeStructure = {};
-            let toDoArr = [];
+            let topPosition = {};
 
             chartConfig.chart = {
-                container: "#tree-simple"
+                container: "#tree-simple",
+                node: {
+                    collapsable: true   
+                },
+                connectors: {
+                    type: 'step'
+                }
             }
 
-            let topPosition = {};
-            ovc.positions.forEach(pos =>{
-                if(pos.managerPositionId == '-1'){
+            ovc.positions.forEach(pos => {
+                if (pos.managerPositionId == '-1') {
                     topPosition = pos;
                 }
             })
 
-            toDoArr.push(topPosition);
+            nodeStructure = buildNodeStructure(topPosition, nodeStructure);
+            chartConfig.nodeStructure = nodeStructure;
+            let chart = new Treant(chartConfig, function () { console.log("Tree loaded.") }, $);
 
-            processChildren(toDoArr){
-                
+        }
+
+        function buildNodeStructure(pos, nodeStructure) {
+            nodeStructure = nodeStructure || pos;
+
+            nodeStructure.text = {
+                name: pos.employee.name,
+                title: pos.job.title
             }
+            nodeStructure.image = pos.employee.image
+            nodeStructure.link = {
+                href : `/#/mypage/${pos.employee.id}`,
+                target: '_blank'
+            }
+            
 
-
-        }
-
-        function processChildren(toDoArray){
-
-        }
-
-        simple_chart_config = {
-            chart: {
-                container: "#tree-simple",
-                
-            },
-
-            nodeStructure: {
-                text: { name: "Parent node" },
-                children: [
-                    {
-                        text: { name: "First child" },
-                        children: [
-                            {
-                                text: {name: "Josh"}
-                            },
-                            {
-                                text: {name: "Dustin"}
-                            }
-                        ]
-                    },
-                    {
-                        text: { name: "Second child" }
+            nodeStructure.children = [];
+            if (pos.reportIds) {
+                nodeStructure.collapsed = true
+                ovc.positions.forEach(item => {
+                    for(id in pos.reportIds){
+                        if (id == item.id) {
+                            nodeStructure.children.push(item);
+                        }
                     }
-                ]
+                })
             }
-        };
 
-        var chart = new Treant(simple_chart_config, function () { console.log("Tree loaded.")}, $);
+            nodeStructure.children.forEach(child => {
+                buildNodeStructure(child);
+            })
+
+            return nodeStructure;
+        }
+
+        
 
     }
 
