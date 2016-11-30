@@ -258,7 +258,7 @@
         avc.addPosition = function (managerPositionId, jobId) {
             avc.BisualizeService.addPosition(managerPositionId, jobId)
                 .then(function (data) {
-                    debugger
+    
                     if (data.message) {
                         avc.feedbackSuccess = true
                         avc.feedback = data.message

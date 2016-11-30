@@ -6,25 +6,41 @@
   <title>Bisualize</title>
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/6.2.4/foundation-flex.min.css">
   <link rel="stylesheet" href="/bundle.css">
-  <link rel="shortcut icon" href="/app/resources/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="/app/resources/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="/app/dependencies/treant-js/Treant.css">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/app/resources/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/app/resources/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/app/resources/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/app/resources/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/app/resources/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/app/resources/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/app/resources/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/app/resources/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/app/resources/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/app/resources/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/app/resources/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/app/resources/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/app/resources/favicon-16x16.png">
+  <link rel="manifest" href="/app/resources/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/app/resources/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
 </head>
 
 <body>
 
   <div class="top-biz">
-  <h1>Bisualize</h1>
-  <div class="top-bar navigation">
-    <div class="top-bar-left">
-      <ul class="dropdown menu" data-dropdown-menu>
-        <li><a ui-sref="empView">My Page</a></li>
-        <li><a ui-sref="orgView">Org Chart</a></li>
-        <li><a ui-sref="adminView">Admin</a></li>
-        <li><a ui-sref="readView">Read Me</a></li>
-      </ul>
+    <h1>Bisualize</h1>
+    <div class="top-bar navigation">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li><a ui-sref="empView">My Page</a></li>
+          <li><a ui-sref="orgView">Org Chart</a></li>
+          <li><a ui-sref="adminView">Admin</a></li>
+          <li><a ui-sref="readView">Read Me</a></li>
+        </ul>
+      </div>
     </div>
-  </div>
   </div>
 
   <ui-view></ui-view>
