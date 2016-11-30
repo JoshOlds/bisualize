@@ -39,7 +39,7 @@
   <div class="large-12 columns">
     <form class="edit-employee" id="employeeForm">
       <label for="current-employee"> Employee Name </label>
-      <select id="current-employee" ng-model="avc.currentEmployee" ng-options="employee as employee.name for employee in avc.employees"></select>
+      <select id="current-employee" ng-model="avc.currentEmployee" ng-options="employee as employee.name for employee in avc.employees.sort(avc.sortByName)"></select>
     </form>
     <form ng-if="avc.currentEmployee">
       <label> Edit Name</label>
@@ -66,9 +66,9 @@
   <div class="large-12 columns">
     <form class="new-position" id="positionForm">
       <label for="manager-position">Manager Position</label>
-      <select id="manager-position" ng-model="avc.currentManagerPositionId" ng-options="position as ((position.job.title || 'No Title') + ' - ' + (position.employee.name || 'Empty')) for position in avc.positions"></select>
+      <select id="manager-position" ng-model="avc.currentManagerPositionId" ng-options="position as ( (position.employee.name || 'Empty') + ' - ' + (position.job.title || 'No Title')) for position in avc.positions.sort(avc.sortByPosEmpName)"></select>
       <label for="jobId-position">Job</label>
-      <select id="jobId-position" ng-model="avc.currentJobId" ng-options="job.id as job.title for job in avc.jobs"></select>
+      <select id="jobId-position" ng-model="avc.currentJobId" ng-options="job.id as job.title for job in avc.jobs.sort(avc.sortByTitle)"></select>
       <button type="button" class="button admin-button" ng-click="avc.addPosition(avc.currentManagerPositionId.id, avc.currentJobId); ">Submit</button>
     </form>
     <p ng-show="avc.feedbackSuccess">{{avc.feedback}}</p>
@@ -81,14 +81,14 @@
   <div class="large-12 columns">
     <form class="edit-position" id="positionForm">
       <label for="current-position">Position</label>
-      <select id="current-position" ng-model="avc.currentPosition" ng-options="position as ((position.job.title || 'No Title') + ' - ' + (position.employee.name || 'Empty')) for position in avc.positions"></select>
+      <select id="current-position" ng-model="avc.currentPosition" ng-options="position as ((position.job.title || 'No Title') + ' - ' + (position.employee.name || 'Empty')) for position in avc.positions.sort(avc.sortByJobTitle)"></select>
     </form>
     <label for="manager-position" ng-if="avc.currentPosition.managerPositionId != '-1'">Manager</label>
     <input type="text" ng-if="avc.currentPosition.managerPositionId != '-1'"ng-model="(avc.getManagerObj(avc.currentPosition.managerPositionId).employee.name || 'No Employee Assigned' )" disabled ></input>
     <label> Employee</label>
-    <select ng-model="avc.currentPosition.employeeId" ng-options="employee.id as employee.name for employee in avc.employees"></select>
+    <select ng-model="avc.currentPosition.employeeId" ng-options="employee.id as employee.name for employee in avc.employees.sort(avc.sortByName)"></select>
     <label> Job</label>
-    <select ng-model="avc.currentPosition.jobId" ng-options="job.id as job.title for job in avc.jobs"></select>
+    <select ng-model="avc.currentPosition.jobId" ng-options="job.id as job.title for job in avc.jobs.sort(avc.sortByTitle)"></select>
 
     <input id="terminate" ng-model="avc.currentPosition.terminate" type="checkbox"><label for="terminate">Delete Position (CAUTION: This position must not have reports. This can't be undone)</label>
     <br>
@@ -118,7 +118,7 @@
   <div class="large-12 columns">
     <form class="edit-job" id="jobForm">
       <label for="current-job"> Job Title </label>
-      <select id="current-job" ng-model="avc.currentJob" ng-options="job as job.title for job in avc.jobs"></select>
+      <select id="current-job" ng-model="avc.currentJob" ng-options="job as job.title for job in avc.jobs.sort(avc.sortByTitle)"></select>
     </form>
     <form ng-if="avc.currentJob">
       <input type="text" placeholder="Job Title" ng-model="avc.currentJob.title" />
@@ -155,7 +155,7 @@
   <div class="large-12 columns">
     <form class="edit-badge" id="badgeForm">
       <label for="current-badge"> Badge Title</label>
-      <select id="current-badge" ng-model="avc.currentBadge" ng-options="badge as badge.title for badge in avc.badges"></select>
+      <select id="current-badge" ng-model="avc.currentBadge" ng-options="badge as badge.title for badge in avc.badges.sort(avc.sortByTitle)"></select>
     </form>
     <form ng-if="avc.currentBadge">
       <input type="text" placeholder="Badge Title" ng-model="avc.currentBadge.title" />

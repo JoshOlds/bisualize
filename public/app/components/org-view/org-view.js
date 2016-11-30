@@ -51,19 +51,19 @@
             nodeStructure = nodeStructure || pos;
 
             nodeStructure.text = {
-                name: pos.employee.name,
-                title: pos.job.title
+                name: pos.employee.name || 'No Employee',
+                title: pos.job.title || 'No Job'
             }
-            nodeStructure.image = pos.employee.image
+            nodeStructure.image = pos.employee.image || '//placehold.it/75x75'
             nodeStructure.link = {
-                href : `/#/mypage/${pos.employee.id}`,
+                href : `/#/mypage/${pos.employee.id}` || '/#/mypage',
                 target: '_blank'
             }
             
 
             nodeStructure.children = [];
             if (pos.reportIds) {
-                nodeStructure.collapsed = true
+                if(pos == nodeStructure){nodeStructure.collapsed = true}
                 ovc.positions.forEach(item => {
                     for(id in pos.reportIds){
                         if (id == item.id) {

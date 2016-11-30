@@ -13,6 +13,7 @@
     function EmpViewController($scope, $stateParams, BisualizeService) {
         let evc = this
         let employeeId = $stateParams.employeeId || '5bd5255b-e58b-476c-9b5b-f808403e4104' //Update this to CEO emp id
+        if(employeeId == '-1'){employeeId = '5bd5255b-e58b-476c-9b5b-f808403e4104'}
         evc.reports = [];
         evc.badges = [];
         evc.manager = {};

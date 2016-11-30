@@ -3,7 +3,7 @@
   color: white; }
 
 .badge {
-  background-color: #a6a6a6; }
+  background-color: #e6e6e6; }
 
 .top-biz {
   background-color: #002f4c;
@@ -34,7 +34,13 @@
   padding: 4vh; }
 
 .is-active {
-  background: white; }
+  background: #e6e6e6; }
+
+.tabs-title a:hover {
+  background: #f2f2f2; }
+
+.tabs {
+  border: none; }
 
 .admin-details a {
   color: #002f4c;
@@ -63,10 +69,14 @@
   border-top: 1px solid lightgray; }
 
 .emp-manager-image {
-  border-radius: 50%; }
+  border-radius: 50%;
+  height: 165px;
+  width: 165px; }
 
 .emp-reports-image {
-  border-radius: 50%; }
+  border-radius: 50%;
+  height: 140px;
+  width: 140px; }
 
 .collapse-switch {
   width: 175px !important;
@@ -76,7 +86,7 @@
   margin-left: 75px; }
 
 .Treant .node.collapsed {
-  outline-color: blue; }
+  outline-color: #006eb2; }
 
 .tree-simple p {
   margin: 0px 0px 0px 85px;

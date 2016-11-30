@@ -2,9 +2,7 @@
     <div class="small-5 text-center columns emp-photo">
         <img id="emp-photo" class="emp-photo" src="{{evc.employee.image}}" alt="Image of {{evc.employee.name}}">
         <div class="row align-center emp-badges">
-            <div id="emp-badges" class="badges-padding small-2 columns" ng-repeat="badge in evc.employee.badges">
-                <img src="{{badge.image}}" class="badge" alt="{{badge.title}}" title="{{badge.title}}">
-            </div>
+
         </div>
 
     </div>
@@ -30,17 +28,13 @@
         <div class="row">
             <div class="small-12 columns">
                 <!--badge-->
-                <h3>Request badge etc</h3>
-
-                <form class="request-badge" id="requestedBadgeForm">
-                    <label for="requested-badge"> Badge Titles </label>
-                    <select id="requested-badge" ng-model="evc.requestedBadges" ng-options="badge as badge.title for badge in evc.badges"></select>
-                    <button type="button" class="button badge-request">Submit Request</button>
-                </form>
+                <div class="row">
+                    <div id="emp-badges" class="badges-padding small-2 columns" ng-repeat="badge in evc.employee.badges">
+                        <img src="{{badge.image}}" class="badge" alt="{{badge.title}}" title="{{badge.title}}">
+                    </div>
+                </div>
             </div>
         </div>
-
-
     </div>
 </div>
 
@@ -48,11 +42,11 @@
     <div class="small-2 columns emp-manager text-center" ng-show="evc.manager.id">
         <h4>Manager</h4>
         <a href="/#/mypage/{{evc.manager.employeeId}}">
-            <img class="emp-manager-image" src="{{evc.manager.employee.image}}">
+            <img class="emp-manager-image" src="{{evc.manager.employee.image || '//placehold.it/400x400'}}">
         </a>
-        <h8 class="text-center">{{evc.manager.employee.name}}</h8>
+        <h8 class="text-center">{{evc.manager.employee.name || 'No Manager'}}</h8>
         <br>
-        <h8 class="text-center">{{evc.manager.job.title}}</h8>
+        <h8 class="text-center">{{evc.manager.job.title || 'No Title'}}</h8>
         <!--<h5 class="text-center">{{evc.employee.position.manager.name}}</h5> We dont have access to name here...-->
     </div>
     <div class="small-10 columns" ng-show="evc.reports.length > 0">
@@ -60,13 +54,13 @@
         <div class="row">
             <!--managerPosId-->
 
-            <div class="small-2 columns text-center" ng-repeat="report in evc.reports.filter(evc.filterReports)">
+            <div class="small-2 columns text-center" ng-repeat="report in evc.reports">
                 <a href="/#/mypage/{{report.employee.id}}">
-                    <img class="emp-reports-image" src="{{report.employee.image}}">
+                    <img class="emp-reports-image" src="{{report.employee.image || '//placehold.it/400x400'}}">
                 </a>
-                <h8 class="text-center">{{report.employee.name}}</h8>
+                <h8 class="text-center">{{report.employee.name || 'No Employee'}}</h8>
                 <br>
-                <h8 class="text-center">{{report.job.title}}</h8>
+                <h8 class="text-center">{{report.job.title || 'No Title'}}</h8>
             </div>
         </div>
 

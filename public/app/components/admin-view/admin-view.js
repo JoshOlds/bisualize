@@ -314,10 +314,26 @@
             return manObj;
         }
 
-        function updateSpinner(isOn){
-
+        avc.sortByName = function sortByName(a, b){
+            if(a.name > b.name){return 1}
+            if(a.name < b.name){return -1}
+            return 0;
         }
-
+        avc.sortByTitle = function sortByTitle(a, b){
+            if(a.title > b.title){return 1}
+            if(a.title < b.title){return -1}
+            return 0;
+        }
+        avc.sortByPosEmpName = function sortByPosEmpName(a, b){
+            if(a.employee.name > b.employee.name){return 1}
+            if(a.employee.name < b.employee.name){return -1}
+            return 0;
+        }
+        avc.sortByJobTitle = function sortByJobTitle(a, b){
+            if(a.job.title > b.job.title){return 1}
+            if(a.job.title < b.job.title){return -1}
+            return 0;
+        }
 
 
     }

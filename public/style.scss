@@ -1,8 +1,8 @@
 $darkBase:#002f4c;
 // $lightBase: #ECEFF1;
 $lightBase: white;
-$darkLight: darken($lightBase, 35%);
-
+$darkLight: darken($lightBase, 10%);
+$active: darken($lightBase, 5%);
 
 .badge-request{
     background-color:$darkBase;
@@ -52,8 +52,16 @@ $darkLight: darken($lightBase, 35%);
 }
 
 .is-active{ 
-    background: $lightBase
+    background: $darkLight
 } 
+.tabs-title{
+    a:hover {
+        background: $active;
+    }
+}
+.tabs{
+    border: none;
+}
 
 .admin-details a{
     color:$darkBase;
@@ -91,9 +99,14 @@ $darkLight: darken($lightBase, 35%);
 
 .emp-manager-image{
     border-radius: 50%;
+    height: 165px;
+    width: 165px;
 }
 .emp-reports-image{
     border-radius: 50%;
+    height: 140px;
+    width: 140px;
+    
 }
 
 .collapse-switch { 
@@ -105,7 +118,7 @@ $darkLight: darken($lightBase, 35%);
     }
 .Treant{
     .node.collapsed { 
-        outline-color: blue; 
+        outline-color: lighten($darkBase, 20%); 
         }
 } 
 
