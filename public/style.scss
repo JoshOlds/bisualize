@@ -47,14 +47,19 @@ $darkLight: darken($lightBase, 35%);
     display: inline-block
 }
 
-// .is-active{ 
-//     background: $lightBase
-// } 
+.spacer{
+    padding: 4vh;
+}
+
+.is-active{ 
+    background: $lightBase
+} 
 
 .admin-details a{
     color:$darkBase;
-        font-weight: 500;
+    font-weight: 500;
     font-size: .875rem;
+   
 }
 
 .emp-photo{
@@ -62,6 +67,10 @@ $darkLight: darken($lightBase, 35%);
     height: 300px;
     width: 300px;
     border-right: 1px grey;
+}
+
+.admin-button{
+    background-color: $darkBase;
 }
 
 .emp-badges{

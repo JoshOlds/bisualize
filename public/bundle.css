@@ -30,6 +30,12 @@
 .tabs-title {
   display: inline-block; }
 
+.spacer {
+  padding: 4vh; }
+
+.is-active {
+  background: white; }
+
 .admin-details a {
   color: #002f4c;
   font-weight: 500;
@@ -40,6 +46,9 @@
   height: 300px;
   width: 300px;
   border-right: 1px grey; }
+
+.admin-button {
+  background-color: #002f4c; }
 
 .emp-badges {
   margin-top: 20px; }
