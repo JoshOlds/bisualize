@@ -71,7 +71,6 @@
                 isActive(data[2], 'jobs'),
                 avc.badges = data[3]
                 update()
-                updateSpinner(false);
             })
         }
 
@@ -280,7 +279,7 @@
         //Shows feedback message for 3 seconds
         avc.showFeedback = function () {
             update()
-            updateSpinner(true);
+
             setTimeout(avc.renewData, 1500);
             setTimeout(function () {
                 avc.feedbackFail = false;
