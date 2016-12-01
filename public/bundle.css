@@ -86,13 +86,11 @@
 
 .emp-manager-image {
   border-radius: 50%;
-  height: 165px;
-  width: 165px; }
+  width: 24vw; }
 
 .emp-reports-image {
   border-radius: 50%;
-  height: 140px;
-  width: 140px; }
+  width: 22vw; }
 
 .collapse-switch {
   width: 175px !important;
