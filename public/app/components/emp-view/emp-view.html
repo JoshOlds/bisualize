@@ -42,7 +42,7 @@
     <div class="small-2 columns emp-manager text-center" ng-show="evc.manager.id">
         <h4>Manager</h4>
         <a href="/#/mypage/{{evc.manager.employeeId}}">
-            <img class="emp-manager-image" src="{{evc.manager.employee.image || '//placehold.it/400x400'}}">
+            <img class="emp-manager-image" src="{{evc.manager.employee.image}}">
         </a>
         <h8 class="text-center">{{evc.manager.employee.name || 'No Manager'}}</h8>
         <br>
@@ -56,7 +56,7 @@
 
             <div class="small-2 columns text-center" ng-repeat="report in evc.reports">
                 <a href="/#/mypage/{{report.employee.id}}">
-                    <img class="emp-reports-image" src="{{report.employee.image || '//placehold.it/400x400'}}">
+                    <img class="emp-reports-image" src="{{report.employee.image}}">
                 </a>
                 <h8 class="text-center">{{report.employee.name || 'No Employee'}}</h8>
                 <br>

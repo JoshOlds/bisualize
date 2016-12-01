@@ -13,7 +13,7 @@
     function EmpViewController($scope, $stateParams, BisualizeService) {
         let evc = this
         let employeeId = $stateParams.employeeId || '5bd5255b-e58b-476c-9b5b-f808403e4104' //Update this to CEO emp id
-        if(employeeId == '-1'){employeeId = '5bd5255b-e58b-476c-9b5b-f808403e4104'}
+        if (employeeId == '-1') { employeeId = '5bd5255b-e58b-476c-9b5b-f808403e4104' }
         evc.reports = [];
         evc.badges = [];
         evc.manager = {};
@@ -29,69 +29,76 @@
         }
 
         evc.getEmployee = function () {
-            BisualizeService.getEmployee(employeeId)
-                .then(data => {
-                    evc.employee = data
+            return new Promise((resolve, reject) =>{
+                BisualizeService.getEmployee(employeeId)
+                    .then(data => {
+                        evc.employee = data
 
-                    evc.getReports()
-                    evc.getBadges()
-                    evc.getManager()
-                })
-                .catch(err => {
-                    // console.log(err)
-                })
+                        Promise.all([
+                            evc.getReports(),
+                            evc.getBadges(),
+                            evc.getManager()
+                        ])
+                            .then(() => {
+                                resolve();
+                            })
+
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+            })
+
         }
-
-
-        // evc.getReports = function(){
-        //     BisualizeService.getPosition(evc.employee.positionId)
-        //     .then(data => {
-        //         console.log('get reports')
-        //         console.log(data)
-        //     })
-
-        // }
 
         evc.getReports = function () {
-            var reports = evc.employee.position.reportIds;
-            for (id in reports) {
-                BisualizeService.getPosition(reports[id])
-                    .then(data => {
-                        evc.reports.push(data)
+            return new Promise((resolve, reject) => {
+                var reports = evc.employee.position.reportIds;
+                for (id in reports) {
+                    BisualizeService.getPosition(reports[id])
+                        .then(data => {
+                            evc.reports.push(data)
+                        })
+                }
+                resolve();
+            })
 
-                        update()
-                    })
-            }
         }
-
-        evc.getEmployee()
 
         // CODE FOR GETTING BADGES
 
         evc.getBadges = function () {
-            BisualizeService.getAllBadges()
-                .then(data => {
-                    evc.badges = data
-                    update()
-                })
-        }
-
-        evc.getManager = function getManager(){
-            BisualizeService.getPosition(evc.employee.position.managerPositionId)
-            .then(data =>{
-                evc.manager = data;
-                update()
+            return new Promise((resolve, reject) => {
+                BisualizeService.getAllBadges()
+                    .then(data => {
+                        evc.badges = data
+                        resolve();
+                    })
             })
+
         }
 
-        evc.filterReports = function filterReports(item){
-            if(item.employee.name){return item} //Makes sure employees are attached to reports
+        evc.getManager = function getManager() {
+            return new Promise((resolve, reject) => {
+                BisualizeService.getPosition(evc.employee.position.managerPositionId)
+                    .then(data => {
+                        evc.manager = data;
+                        resolve();
+                    })
+            })
+
         }
+
+        evc.filterReports = function filterReports(item) {
+            if (item.employee.name) { return item } //Makes sure employees are attached to reports
+        }
+
+
+        evc.getEmployee()
+        .then(() => {
+            update();
+        })
+
 
     }
-
-
-
-
-
 } ())

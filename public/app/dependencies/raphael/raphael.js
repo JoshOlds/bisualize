@@ -5954,7 +5954,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	                if (key.substring(0, 6) == "xlink:") {
 	                    el.setAttributeNS(xlink, key.substring(6), Str(attr[key]));
 	                } else {
-	                    el.setAttribute(key, Str(attr[key]));
+						try{
+							el.setAttribute(key, Str(attr[key]));
+						}
+						catch (e){
+							console.log('test');
+						}
+	                    
 	                }
 	            }
 	        } else {

@@ -139,6 +139,7 @@ $topbar-link-font-family: 'Fira Sans', sans-serif;
 .Treant{
     .node.collapsed { 
         outline-color: lighten($darkBase, 20%); 
+        box-shadow: 0px 0px 15px lighten($darkBase, 20%);
         }
 } 
 
