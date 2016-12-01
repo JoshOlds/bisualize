@@ -38,26 +38,28 @@
     </div>
 </div>
 
-<div class="row emp-bottom-section">
-    <div class="small-2 columns emp-manager text-center" ng-show="evc.manager.id">
+<div class="row emp-bottom-section align-center">
+    <div class="small-4 large-2 columns emp-manager text-center" ng-show="evc.manager.id">
         <h4>Manager</h4>
         <a href="/#/mypage/{{evc.manager.employeeId}}">
             <img class="emp-manager-image" src="{{evc.manager.employee.image}}">
         </a>
+        <br>
         <h8 class="text-center">{{evc.manager.employee.name || 'No Manager'}}</h8>
         <br>
         <h8 class="text-center">{{evc.manager.job.title || 'No Title'}}</h8>
         <!--<h5 class="text-center">{{evc.employee.position.manager.name}}</h5> We dont have access to name here...-->
     </div>
-    <div class="small-10 columns" ng-show="evc.reports.length > 0">
+    <div class="small-8 columns" ng-show="evc.reports.length > 0">
         <h4>Reports</h4>
         <div class="row">
             <!--managerPosId-->
 
-            <div class="small-2 columns text-center" ng-repeat="report in evc.reports">
+            <div class="small-4 large-2 columns text-center" ng-repeat="report in evc.reports">
                 <a href="/#/mypage/{{report.employee.id}}">
                     <img class="emp-reports-image" src="{{report.employee.image}}">
                 </a>
+                <br>
                 <h8 class="text-center">{{report.employee.name || 'No Employee'}}</h8>
                 <br>
                 <h8 class="text-center">{{report.job.title || 'No Title'}}</h8>
