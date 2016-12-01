@@ -9,7 +9,7 @@
     })
 
 
-AdminViewController.$inject = ['BisualizeService']
+ReadViewController.$inject = ['BisualizeService']
 
     function ReadViewController(BisualizeService){
 
