@@ -20,10 +20,11 @@
         avc.jobs = []
         avc.badges = []
 
-        avc.BisualizeService.getAllPositions().then(data => { avc.positions = data })
-        avc.BisualizeService.getAllEmployees().then(data => { isActive(data, 'employees') })
-        avc.BisualizeService.getAllJobs().then(data => { isActive(data, 'jobs') })
-        avc.BisualizeService.getAllBadges().then(data => { avc.badges = data })
+        
+        // avc.BisualizeService.getAllPositions().then(data => { avc.positions = data })
+        // avc.BisualizeService.getAllEmployees().then(data => { isActive(data, 'employees') })
+        // avc.BisualizeService.getAllJobs().then(data => { isActive(data, 'jobs') })
+        // avc.BisualizeService.getAllBadges().then(data => { avc.badges = data })
 
 
         avc.activeView = 'Employees'
@@ -70,9 +71,14 @@
                 isActive(data[1], 'employees');
                 isActive(data[2], 'jobs'),
                 avc.badges = data[3]
+                avc.positions = avc.positions.sort(sortByPosEmpName)
+                avc.employees = avc.employees.sort(sortByName)
+                avc.jobs = avc.jobs.sort(sortByTitle)
+                avc.badges = avc.badges.sort(sortByTitle)
                 update()
             })
         }
+        avc.renewData();
 
         avc.updateJob = function (id, currentJob) {
             if (currentJob.terminate) {
@@ -313,22 +319,30 @@
             return manObj;
         }
 
-        avc.sortByName = function sortByName(a, b){
+        sortByName = function sortByName(a, b){
+            if(!a.name){return 1}
+            if(!b.name){return -1}
             if(a.name > b.name){return 1}
             if(a.name < b.name){return -1}
             return 0;
         }
-        avc.sortByTitle = function sortByTitle(a, b){
+        sortByTitle = function sortByTitle(a, b){
+            if(!a.title){return 1}
+            if(!b.title){return -1}
             if(a.title > b.title){return 1}
             if(a.title < b.title){return -1}
             return 0;
         }
-        avc.sortByPosEmpName = function sortByPosEmpName(a, b){
+        sortByPosEmpName = function sortByPosEmpName(a, b){
+            if(!a.employee.name){return 1}
+            if(!b.employee.name){return -1}
             if(a.employee.name > b.employee.name){return 1}
             if(a.employee.name < b.employee.name){return -1}
             return 0;
         }
-        avc.sortByJobTitle = function sortByJobTitle(a, b){
+        sortByJobTitle = function sortByJobTitle(a, b){
+            if(!a.job.title){return 1}
+            if(!b.job.title){return -1}
             if(a.job.title > b.job.title){return 1}
             if(a.job.title < b.job.title){return -1}
             return 0;
