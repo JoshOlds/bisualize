@@ -41,6 +41,7 @@ $topbar-link-font-family: 'Fira Sans', sans-serif;
 
 .top-biz a{
     color: $lightBase;
+    font-size: 1.2rem;
 }
 
 .top-bar ul{
@@ -165,6 +166,11 @@ $topbar-link-font-family: 'Fira Sans', sans-serif;
     }
 }
 
+.read-details a{
+    color:$darkBase;
+    font-weight: 500;
+    font-size: .875rem;
+}
 
 
 

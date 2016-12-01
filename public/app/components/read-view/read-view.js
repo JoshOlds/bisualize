@@ -15,14 +15,12 @@ ReadViewController.$inject = ['BisualizeService']
 
         let rvc = this;
 
-        rvc.views = [
-            {
+        rvc.activeView = 'How To Guide'
+        rvc.views = [{
                 name: 'How To Guide'
-            },
-            {
-                name: 'Project Description'
-            }
-        ]
+            },{
+                name: 'Project Details'
+            }]
 
 
 

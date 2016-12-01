@@ -1,17 +1,39 @@
 <div class="spacer"></div>
 
-<h2 class="text-center">Bisualize is a corporate tool to vizualize employee progress, skills, and experience</h2>
-
-
-<div class="row column medium-12 medium-centered read-details">
-  <ul class="tabs text-center" data-tabs id="example-tabs">
-    <li class="tabs-title" ng-repeat="view in rvc.views" ng-class="{'is-active':view.name}"><a ng-click="avc.activeView = view.name">{{view.name}}</a></li>
-  </ul>
+<div class="row">
+    <div class="column medium-12">
+        <h2 class="text-center">Bisualize is a corporate tool to vizualize employee progress, skills, and experience</h2>
+    </div>
 </div>
 
 
-<h5>Bisualize is Joshua Olds, Meredith Ganz, Dustin Patterson, and Mark Ohnsman's <a href="https://boisecodeworks.com/" target="_blank" class="footer">CodeWorks</a> capstone project</h5>
+
+<div class="row column medium-12 medium-centered read-details">
+    <ul class="tabs text-center" data-tabs id="example-tabs">
+        <li class="tabs-title" ng-repeat="view in rvc.views" ng-class="{'is-active': rvc.activeView == view.name}"><a ng-click="rvc.activeView = view.name">{{view.name}}</a></li>
+    </ul>
+</div>
+
+<div class="how-to">
+    <div class="row" ng-show="rvc.activeView == 'How To Guide'">
+        <div class="columns medium-12">
+            How To Guide Part 
+        </div>
+
+    </div>
+</div>
+
+<div class="project-details">
+    <div class="row" ng-show="rvc.activeView == 'Project Details'">
+        <div class="medium-12 columns">
+<h5>Bisualize is Joshua Olds, Meredith Ganz, Dustin Patterson, and Mark Ohnsman's <a href="https://boisecodeworks.com/" target="_blank"
+        class="footer">CodeWorks</a> capstone project</h5>
 <ul>
     <li>Front End: </li>
     <li>Back End: </li>
 </ul>
+
+        </div>
+    </div>
+</div>
+
