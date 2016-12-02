@@ -17,16 +17,6 @@
 <div class="how-to">
     <div class="row" ng-show="rvc.activeView == 'How To Use'">
         <div class="columns medium-12">
-            <h5>Strategy for the project</h5>
-            <li>Overall strategy</li>
-            <li>difference between job and position</li>
-            <h5>Actual How To</h5>
-            <li>how to add a new employee</li>
-            <li>Add a new job</li>
-            <li>add a new position</li>
-            <li>employee switch job / position</li>
-            <li>Terminate / delete (job position employee badge)</li>
-            <li>Badge Stuff</li>
         </div>
     </div>
 </div>
@@ -34,6 +24,19 @@
 <div class="project-details">
     <div class="row" ng-show="rvc.activeView == 'Project Details'">
         <div class="medium-12 columns">
+
+
+            <h5>The relationships of the data in Bisualize:</h5>
+        <p>The organization Bisualize's backend relationships is tied together by <em>positions</em>.  Positions represent a physical spot on the organization tree, each position must have a manager position, and it can have reports underneath it.</p>
+        <p> A position has an <em>employee</em> and a <em>job</em> property that can be changed. This allows for employees to be moved from one team to another, or be promoted.  It also means that the job title associated with the position can change.</p>
+        <p>Employees have a job and have <em>badges</em> which are lists that hold a title and description. These are used as references to positions and employees but are not reliant upon them.</p>
+        <p>Badges are used to both reward employees and track their experience within the company.  For example, if an employee is cross-trained he/she may earn a badge indicating that they have completed that training.</p>
+       <p>Badges can be a useful tool during employee reviews or the promotion process as indicators of employees' accomplishments.</p>
+
+
+
+
+
             <h5>Bisualize is Joshua Olds, Meredith Ganz, Dustin Patterson, and Mark Ohnsman's <a href="https://boisecodeworks.com/"
                     target="_blank" class="footer">CodeWorks</a> capstone project</h5>
             <h5 class="Fe-Be">Front End</h5>
