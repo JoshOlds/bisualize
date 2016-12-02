@@ -16,6 +16,7 @@ ReadViewController.$inject = ['BisualizeService']
         let rvc = this;
 
         rvc.activeView = 'How To Use'
+        rvc.subActiveView = 'My Page'
         rvc.views = [{
                 name: 'How To Use'
             },{

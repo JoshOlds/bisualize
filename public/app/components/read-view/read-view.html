@@ -7,20 +7,52 @@
 </div>
 
 
-
+<!--This piece of code allows us to switch views-->
 <div class="row column medium-12 medium-centered read-details">
     <ul class="tabs text-center" data-tabs id="example-tabs">
         <li class="tabs-title" ng-repeat="view in rvc.views" ng-class="{'is-active': rvc.activeView == view.name}"><a ng-click="rvc.activeView = view.name">{{view.name}}</a></li>
     </ul>
 </div>
 
+<!--This is for the tabs on the how to use section-->
+<div class="row column medium-12 medium-centered admin-details" ng-show="rvc.activeView == 'How To Use'">
+  <ul class="tabs text-center" data-tabs id="example-tabs">
+    <li class="tabs-title" ng-class="{'is-active': rvc.subActiveView == 'My Page'}"><a ng-click="rvc.subActiveView = 'My Page'">My Page</a></li>
+    <li class="tabs-title" ng-class="{'is-active': rvc.subActiveView == 'Org Chart'}"><a ng-click="rvc.subActiveView = 'Org Chart'">Org Chart</a></li>
+    <li class="tabs-title" ng-class="{'is-active': rvc.subActiveView == 'Admin'}"><a ng-click="rvc.subActiveView = 'Admin'">Admin</a></li>
+  </ul>
+</div>
+
+
+<!--This is for the "How To Use" section of the page related to My Page-->
 <div class="how-to">
-    <div class="row" ng-show="rvc.activeView == 'How To Use'">
+    <div class="row" ng-show="rvc.activeView == 'How To Use' && rvc.subActiveView == 'My Page'">
         <div class="columns medium-12">
+            <h1>  MY PAGE IS HERE  </h1>
         </div>
     </div>
 </div>
 
+<!--This is for the "How To Use" section of the page related to Org Chart-->
+<div class="how-to">
+    <div class="row" ng-show="rvc.activeView == 'How To Use' && rvc.subActiveView == 'Org Chart'">
+        <div class="columns medium-12">
+            <h1>   Here is ORG Chart </h1>
+        </div>
+    </div>
+</div>
+
+
+<!--This is for the "How To Use" section of the page related to Admin-->
+<div class="how-to">
+    <div class="row" ng-show="rvc.activeView == 'How To Use' && rvc.subActiveView == 'Admin'">
+        <div class="columns medium-12">
+            <h1>   AdMiN </h1>
+        </div>
+    </div>
+</div>
+
+<!--This is for the project details section of the page-->
 <div class="project-details">
     <div class="row" ng-show="rvc.activeView == 'Project Details'">
         <div class="medium-12 columns">
