@@ -90,7 +90,7 @@
     <label> Job</label>
     <select ng-model="avc.currentPosition.jobId" ng-options="job.id as job.title for job in avc.jobs"></select>
 
-    <input id="terminate" ng-model="avc.currentPosition.terminate" type="checkbox"><label for="terminate">Delete Position (CAUTION: This position must not have reports. This can't be undone)</label>
+    <input id="terminate" ng-model="avc.currentPosition.terminate" type="checkbox"><label for="terminate">Delete Position (CAUTION: This position must not have reports or active employee. This can't be undone!)</label>
     <br>
     <button type="button" class="button admin-button" ng-click="avc.updatePosition(avc.currentPosition.id, avc.currentPosition )">Submit</button>
     <p ng-show="avc.feedbackSuccess">{{avc.feedback}}</p>

@@ -3,42 +3,229 @@
 <div class="row">
     <div class="column medium-12">
         <h2 class="text-center">Bisualize is a corporate tool to vizualize employee progress, skills, and experience</h2>
+        <h6 class="text-center">Bisualize is a capstone project for <a href="https://boisecodeworks.com/" target="_blank" class="footer">CodeWorks Boise</a>            and was designed and coded by <a href="https://www.linkedin.com/in/joshua-olds-91499b122" target="_blank">Joshua Olds</a>,
+            <a href="https://www.linkedin.com/in/meredith-ganz-555a4043" target="_blank">Meredith Ganz</a>, <a href="https://www.linkedin.com/in/dustinrpatterson"
+                target="_blank">Dustin Patterson</a>, and <a href="https://www.linkedin.com/in/markohnsman" target="_blank">Mark Ohnsman</a>.
+        </h6>
     </div>
 </div>
 
 
-
+<!--This piece of code allows us to switch views-->
 <div class="row column medium-12 medium-centered read-details">
     <ul class="tabs text-center" data-tabs id="example-tabs">
         <li class="tabs-title" ng-repeat="view in rvc.views" ng-class="{'is-active': rvc.activeView == view.name}"><a ng-click="rvc.activeView = view.name">{{view.name}}</a></li>
     </ul>
 </div>
 
-<div class="how-to">
-    <div class="row" ng-show="rvc.activeView == 'How To Use'">
-        <div class="columns medium-12">
-            <h5>Strategy for the project</h5>
-            <li>Overall strategy</li>
-            <li>difference between job and position</li>
-            <h5>Actual How To</h5>
-            <li>how to add a new employee</li>
-            <li>Add a new job</li>
-            <li>add a new position</li>
-            <li>employee switch job / position</li>
-            <li>Terminate / delete (job position employee badge)</li>
-            <li>Badge Stuff</li>
+<!--This is for the tabs on the how to use section-->
+<div class="row column medium-12 medium-centered admin-details" ng-show="rvc.activeView == 'How To Use'">
+    <ul class="tabs text-center" data-tabs id="example-tabs">
+        <li class="tabs-title" ng-class="{'is-active': rvc.subActiveView == 'My Page'}"><a ng-click="rvc.subActiveView = 'My Page'">My Page</a></li>
+        <li class="tabs-title" ng-class="{'is-active': rvc.subActiveView == 'Org Chart'}"><a ng-click="rvc.subActiveView = 'Org Chart'">Org Chart</a></li>
+        <li class="tabs-title" ng-class="{'is-active': rvc.subActiveView == 'Admin'}"><a ng-click="rvc.subActiveView = 'Admin'">Admin</a></li>
+    </ul>
+</div>
+
+
+<!--This is for the project details section of the page-->
+<div class="project-details">
+    <div class="row" ng-show="rvc.activeView == 'Project Details'">
+
+        <div class="medium-12 columns">
+            <h5>The relationships of the data in Bisualize:</h5>
+            <p>The organization Bisualize's backend relationships is tied together by <em>positions</em>. Positions represent
+                a physical spot on the organization tree, each position must have a manager position, and it can have reports
+                underneath it.</p>
+            <p> A position has an <em>employee</em> and a <em>job</em> property that can be changed. This allows for employees
+                to be moved from one team to another, or be promoted. It also means that the job title associated with the
+                position can change.</p>
+            <p>Employees have a job and have <em>badges</em> which are lists that hold a title and description. These are used
+                as references to positions and employees but are not reliant upon them.</p>
+            <p>Badges are used to both reward employees and track their experience within the company. For example, if an employee
+                is cross-trained he/she may earn a badge indicating that they have completed that training.
+            </p>
+            <p>Badges can be a useful tool during employee reviews or the promotion process as indicators of employees' accomplishments.
+            </p>
+
+
+            <h5 class="Fe-Be">Front End</h5>
+            <li class="fe-li">The front end was built with Angular</li>
+            <h5 class="Fe-Be">Back End</h5>
         </div>
     </div>
 </div>
 
-<div class="project-details">
-    <div class="row" ng-show="rvc.activeView == 'Project Details'">
-        <div class="medium-12 columns">
-            <h5>Bisualize is Joshua Olds, Meredith Ganz, Dustin Patterson, and Mark Ohnsman's <a href="https://boisecodeworks.com/"
-                    target="_blank" class="footer">CodeWorks</a> capstone project</h5>
-            <h5 class="Fe-Be">Front End</h5>
-            <li class="fe-li">The front end was built with Angular</li>
-            <h5 class="Fe-Be">Back End</h5>
+<!--This is for the "How To Use" section of the page related to My Page-->
+<div class="how-to">
+    <div class="row" ng-show="rvc.activeView == 'How To Use' && rvc.subActiveView == 'My Page'">
+        <div class="columns medium-12">
+            <h4 class="Fe-Be">Description</h4>
+            <p>“My Page” is a more detailed view of a specific employee within the company. You can see the employee’s name,
+                title, badges earned, their manager, and employees they manage.</p>
+            <h4 class="Fe-Be">Instructions</h4>
+            <h6 class="Fe-Be">Badges</h6>
+            <ul>
+                <li>If you hover over the badge icons, the name and description of the badge will appear.</li>
+            </ul>
+            <h6 class="Fe-Be">Navigate Employees</h6>
+            <ul>
+                <li>To navigate to another employee, you can click on their picture and it will load their “My Page” view.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!--This is for the "How To Use" section of the page related to Org Chart-->
+<div class="how-to">
+    <div class="row" ng-show="rvc.activeView == 'How To Use' && rvc.subActiveView == 'Org Chart'">
+        <div class="columns medium-12">
+            <h4 class="Fe-Be">Description</h4>
+            <p>“Org Chart” provides a 30,000-foot view of the employees within the company. You can quickly drill-down into
+                departments and see all the employees that are part of a department.</p>
+            <h4 class="Fe-Be">Instructions</h4>
+            <h6 class="Fe-Be">Drill-down functionality</h6>
+            <ul>
+                <li>When “Org Chart” first loads, it defaults to the company’s executive level employees. If the employee’s card
+                    has a blue glow, it means that they manage a department. By clicking on the text portion of their card,
+                    the “Org Chart” will expand and list that employee’s direct reports.</li>
+            </ul>
+            <h6 class="Fe-Be">Link to “My Page”</h6>
+            <ul>
+                <li>If you would like to view more detailed information for a specific employee, you can click on their picture
+                    and it will load that employee’s “My Page” view.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<!--This is for the "How To Use" section of the page related to Admin-->
+<div class="how-to">
+    <div class="row" ng-show="rvc.activeView == 'How To Use' && rvc.subActiveView == 'Admin'">
+        <div class="columns medium-12">
+            <h4 class="Fe-Be">Description</h4>
+            <p>The “Admin” view allows administrators within an organization to make changes to the company’s structure. Through
+                the “Admin” view, you can create, edit or delete employees, positions, jobs, and badges.</p>
+            <h4 class="Fe-Be">Instructions</h4>
+            <h6 class="Fe-Be">Hire a new employee</h6>
+            <ul>
+                <li><b> Step 1 </b>- Navigate to the “Admin” page, select the “Employees” tab and select the “New” sub-tab. Type
+                    the employee’s name. Paste in a web link for their picture in the appropriate field. The new employee
+                    will be added to the database once you click the “Submit” button. A message at the bottom of the screen
+                    will display momentarily notifying you if the employee was added or if there was an error.
+                    <u> If the employee is filing an existing position, skip to Step 3. </u> <b> NOTE </b> – An employee’s name
+                    is required to create an employee. If you do not add a picture URL, a default image will be automatically
+                    added for the employee.</li>
+                <li><b> Step 2 </b> <em> (SKIP THIS STEP IF THE EMPLOYEE IS FILLING AN OPEN POSITION) </em> – Click over to the
+                    “Position” tab and make sure that the “New” sub-tab is still selected. Using the drop-down, select the
+                    “Manager’s Position” to select who the manager will be for the new position. Using the drop-down, select
+                    a Job title for the new position. Click the “Submit” button. A message at the bottom of the screen will
+                    display momentarily notifying you if the action was successful or if there was an error. <b> NOTE </b>                    - If the job does not exist, you will need to create a new job through the “Jobs” tab. The instructions
+                    can be found in the “Create a new job” section of the instructions.</li>
+                <li><b> Step 3 </b> – On the “Employees” tab, select the “Edit” sub-tab. From here, select the new employee from
+                    the “Employee Name” dropdown. Navigate down to the “Available Position” section and select an open position.
+                    Click the “Submit” button. A message at the bottom of the screen will display momentarily notifying you
+                    if the action was successful or if there was an error. <b> NOTE </b> – Only available positions will
+                    show in the drop-down. If nothing is displaying in the drop-down, go back to step 2 and create a new
+                    position.</li>
+            </ul>
+            <h6 class="Fe-Be">Create a new job</h6>
+            <ul>
+                <li><b> Step 1 </b> – Navigate to the “Admin” page, select the “Jobs” tab and select the “New” sub-tab. Type
+                    in the new job’s official title in the “Job Title” field. Add the job’s responsibilities and requirements
+                    to the “Job Description” field. Once you are satisfied with the level of detail needed for the job, click
+                    the “Submit” button. A message at the bottom of the screen will display momentarily notifying you if
+                    the action was successful or if there was an error.</li>
+            </ul>
+            <h6 class="Fe-Be">Create a new badge</h6>
+            <ul>
+                <li><b> Step 1 </b> – Navigate to the “Admin” page, select the “Badges” tab and select the “New” sub-tab. Type
+                    in the new badge title in the “Badge Title” field. Paste in a web link for the badge’s picture in the
+                    appropriate field. Add the badge’s description to the “Badge Description” field. Once you are satisfied
+                    with the level of detail around the badge, click the “Submit” button. A message at the bottom of the
+                    screen will display momentarily notifying you if the action was successful or if there was an error.</li>
+            </ul>
+            <h6 class="Fe-Be">Edit an employee’s name</h6>
+            <ul>
+                <li><b> Step 1 </b> - Navigate to the “Admin” page, select the “Employee” tab and select the “Edit” sub-tab.
+                    Find the employee you need to edit using the “Employee Name” dropdown menu. New options will populate,
+                    but you only need to modify the text inside the “Edit Name” field on the form. Make the required changes.
+                    Once you have made the required change, click the “Submit” button. A message at the bottom of the screen
+                    will display momentarily notifying you if the action was successful or if there was an error.</li>
+            </ul>
+            <h6 class="Fe-Be">Promote an employee</h6>
+            <ul>
+                <li><b> Step 1 </b> - Navigate to the “Admin” page, select the “Employee” tab and select the “Edit” sub-tab.
+                    Find the employee you need to promote using the “Employee Name” dropdown menu and new options will populate.
+                    Using the “Available Position” dropdown, select the new position that the employee is being promoted
+                    to. Click the “Submit” button. A message at the bottom of the screen will display momentarily notifying
+                    you if the action was successful or if there was an error. <b> NOTE </b> - This will change will automatically
+                    update the employee’s job to the job listed on the position.</li>
+            </ul>
+            <h6 class="Fe-Be">Award an employee with a badge</h6>
+            <ul>
+                <li><b> Step 1 </b> - Navigate to the “Admin” page, select the “Employee” tab and select the “Edit” sub-tab.
+                    Find the employee you need to award with a badge using the “Employee Name” dropdown menu. New options
+                    will populate, but you should only use the “Add Badge” dropdown at the bottom of the form. Using the
+                    dropdown, select the badge the employee has earned. Click the “Submit” button. A message at the bottom
+                    of the screen will display momentarily notifying you if the action was successful or if there was an
+                    error.</li>
+            </ul>
+            <h6 class="Fe-Be">Edit a badge</h6>
+            <ul>
+                <li><b> Step 1 </b> - Navigate to the “Admin” page, select the “Badges” tab and select the “Edit” sub-tab. Find
+                    the badge you need to edit using the “Badge Title” dropdown menu. You will now have options to edit the
+                    badge’s name, picture, and description. Make the required changes. Once you are satisfied with the changes,
+                    click the “Submit” button. A message at the bottom of the screen will display momentarily notifying you
+                    if the action was successful or if there was an error.</li>
+            </ul>
+            <h6 class="Fe-Be">Terminate an employee – WARNING –
+                <u>This action cannot be undone</u>
+            </h6>
+            <ul>
+                <li><b> Step 1 </b> - Navigate to the “Admin” page, select the “Employee” tab and select the “Edit” sub-tab.
+                    Find the employee you need to terminate using the “Employee Name” dropdown menu. New options will populate,
+                    but you only need to select the “Terminate Employee” box at the bottom of the form. Click the “Submit”
+                    button. A message at the bottom of the screen will display momentarily notifying you if the action was
+                    successful or if there was an error. <b> NOTE </b> –
+                    <u>This action CANNOT be undone.</u>
+                </li>
+            </ul>
+            <h6 class="Fe-Be">Delete a position – WARNING –
+                <u>This action cannot be undone</u> <em>(Positions should rarely be deleted)</em></h6>
+            <ul>
+                <li><b> Step 1 </b> - Navigate to the “Admin” page, select the “Position” tab and select the “Edit” sub-tab.
+                    Find the position you want to delete using the “Position” dropdown menu. New options will populate, but
+                    you only need to select the “Delete Position” box at the bottom of the form. Click the “Submit” button.
+                    A message at the bottom of the screen will display momentarily notifying you if the action was successful
+                    or if there was an error. <b> NOTE </b> –
+                    <u>This action CANNOT be undone.</u>
+                </li>
+            </ul>
+            <h6 class="Fe-Be">Delete a job – WARNING –
+                <u>This action cannot be undone</u> <em>(Jobs should rarely be deleted)</em></h6>
+            <ul>
+                <li><b> Step 1 </b> - Navigate to the “Admin” page, select the “Job” tab and select the “Edit” sub-tab. Find
+                    the job you need to delete using the “Job Title” dropdown menu. New options will populate, but you only
+                    need to select the “Delete Job” box at the bottom of the form. Click the “Submit” button. A message at
+                    the bottom of the screen will display momentarily notifying you if the action was successful or if there
+                    was an error. <b> NOTE </b> –
+                    <u>This action CANNOT be undone.</u>
+                </li>
+            </ul>
+            <h6 class="Fe-Be">Delete a badge – WARNING –
+                <u>This action cannot be undone</u> <em>(Badges should rarely be deleted)</em></h6>
+            <ul>
+                <li><b> Step 1 </b> - Navigate to the “Admin” page, select the “Badge” tab and select the “Edit” sub-tab. Find
+                    the badge you want to delete using the “Badge Title” dropdown menu. New options will populate, but you
+                    only need to select the “Delete Badge” box at the bottom of the form. Click the “Submit” button. A message
+                    at the bottom of the screen will display momentarily notifying you if the action was successful or if
+                    there was an error. <b> NOTE </b> –
+                    <u>This action CANNOT be undone.</u>
+                </li>
+            </ul>
+
         </div>
     </div>
 </div>
