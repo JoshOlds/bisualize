@@ -29,8 +29,8 @@ angular.module('bisualize')
                 template: '<read-view></read-view>'         
             })
 
-            // $urlRouterProvider.otherwise('/mypage')
-
+            // This sets the default home page
+            $urlRouterProvider.otherwise('/readme')
 
 
     })
