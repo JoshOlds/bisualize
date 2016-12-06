@@ -140,3 +140,13 @@
 
 .fe-li {
   list-style-type: none; }
+
+.tagline {
+  margin-left: 20px; }
+
+.flexThis {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin-left: 10px; }
