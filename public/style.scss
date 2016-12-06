@@ -77,14 +77,14 @@ $topbar-link-font-family: 'Fira Sans', sans-serif;
 } 
 .tabs-title{
     border: 1px solid $darkLight;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     margin-left: 1px;
     margin-right: 1px;
     a:hover {
         background: $active;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
     }
 }
 .tabs{
