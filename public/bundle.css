@@ -52,11 +52,20 @@
 .is-active {
   background: #e6e6e6; }
 
-.tabs-title a:hover {
-  background: #f2f2f2; }
+.tabs-title {
+  border: 1px solid #e6e6e6;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin: 1px; }
+  .tabs-title a:hover {
+    background: #f2f2f2;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px; }
 
 .tabs {
-  border: none; }
+  border: none;
+  border-bottom: 1px solid #e6e6e6;
+  margin: 5px; }
 
 .admin-details a {
   color: #002f4c;

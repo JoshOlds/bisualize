@@ -76,12 +76,20 @@ $topbar-link-font-family: 'Fira Sans', sans-serif;
     background: $darkLight
 } 
 .tabs-title{
+    border: 1px solid $darkLight;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin: 1px;
     a:hover {
         background: $active;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
     }
 }
 .tabs{
     border: none;
+    border-bottom: 1px solid $darkLight;
+    margin: 5px;
 }
 
 .admin-details a{
