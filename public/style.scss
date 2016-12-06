@@ -79,7 +79,8 @@ $topbar-link-font-family: 'Fira Sans', sans-serif;
     border: 1px solid $darkLight;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    margin: 1px;
+    margin-left: 1px;
+    margin-right: 1px;
     a:hover {
         background: $active;
         border-top-left-radius: 5px;
