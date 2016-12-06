@@ -21,6 +21,7 @@
 <div class="spacer"></div>
 
 <!--EMPLOYEES-->
+<!--This is the new view-->
 <form class="new-employee">
   <div class="row" ng-show="avc.activeView == 'Employees' && avc.subActiveView == 'New'">
     <div class="large-12 columns">
@@ -34,7 +35,7 @@
     </div>
   </div>
 </form>
-
+<!--This is the edit view-->
 <div class="row" ng-show="avc.activeView == 'Employees' && avc.subActiveView == 'Edit'">
   <div class="large-12 columns">
     <form class="edit-employee" id="employeeForm">
@@ -62,6 +63,7 @@
 </form>
 
 <!--POSITIONS-->
+<!--This is the new view-->
 <div class="row" ng-show="avc.activeView == 'Positions' && avc.subActiveView == 'New'">
   <div class="large-12 columns">
     <form class="new-position" id="positionForm">
@@ -75,8 +77,7 @@
     <p ng-show="avc.feedbackFail">{{avc.feedback}}</p>
   </div>
 </div>
-
-
+<!--This is the edit view-->
 <div class="row" ng-show="avc.activeView == 'Positions' && avc.subActiveView == 'Edit'">
   <div class="large-12 columns">
     <form class="edit-position" id="positionForm">
@@ -100,6 +101,7 @@
 
 
 <!--JOBS-->
+<!--This is the new view-->
 <form class="new-job" id="jobForm">
   <div class="row" ng-show="avc.activeView == 'Jobs' && avc.subActiveView == 'New'">
     <div class="large-12 columns">
@@ -113,7 +115,7 @@
     </div>
   </div>
 </form>
-
+<!--This is the edit view-->
 <div class="row" ng-show="avc.activeView == 'Jobs' && avc.subActiveView == 'Edit'">
   <div class="large-12 columns">
     <form class="edit-job" id="jobForm">
@@ -135,6 +137,7 @@
 
 
 <!--BADGES-->
+<!--This is the new view-->
 <form class="new-badge" id="badgeForm">
   <div class="row" ng-show="avc.activeView == 'Badges' && avc.subActiveView == 'New'">
     <div class="large-12 columns">
@@ -150,7 +153,7 @@
     </div>
   </div>
 </form>
-
+<!--This is the edit view-->
 <div class="row" ng-show="avc.activeView == 'Badges' && avc.subActiveView == 'Edit'">
   <div class="large-12 columns">
     <form class="edit-badge" id="badgeForm">
@@ -174,9 +177,3 @@
 
 
 
-<!--
-NEW
-dropdown of 4 objects that we're going to be pulling 
-
-EDIT 
-Dropdown properties -->

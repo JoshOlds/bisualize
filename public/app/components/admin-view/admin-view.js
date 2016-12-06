@@ -264,7 +264,6 @@
         avc.addPosition = function (managerPositionId, jobId) {
             avc.BisualizeService.addPosition(managerPositionId, jobId)
                 .then(function (data) {
-    
                     if (data.message) {
                         avc.feedbackSuccess = true
                         avc.feedback = data.message
@@ -319,6 +318,7 @@
             return manObj;
         }
 
+        // These functions sort the data
         sortByName = function sortByName(a, b){
             if(!a.name){return 1}
             if(!b.name){return -1}
