@@ -145,7 +145,8 @@
   list-style-type: none; }
 
 .tagline {
-  margin-left: 20px; }
+  margin-left: 20px;
+  font-size: 20px; }
 
 .flexThis {
   display: flex;
