@@ -138,6 +138,9 @@
 .Fe-Be {
   font-weight: 600; }
 
+.how-to li {
+  list-style-type: none; }
+
 .fe-li {
   list-style-type: none; }
 
